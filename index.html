@@ -3,1083 +3,370 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Escalante Dog Training | Winchester, CA</title>
-  <meta name="description" content="Escalante Dog Training offers private dog training sessions, packages, and board and train options for large dogs in Winchester, CA." />
-  <style>
-    :root {
-      --slate: #1f2933;
-      --slate-2: #111827;
-      --slate-3: #334155;
-      --neon: #ccff00;
-      --neon-2: #a3ff12;
-      --white: #ffffff;
-      --soft: #f5f7f2;
-      --muted: #d7dde2;
-      --text: #18212b;
-      --shadow: 0 20px 60px rgba(0,0,0,.18);
-      --radius: 24px;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: var(--soft);
-      line-height: 1.6;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    img, video { max-width: 100%; display: block; }
-
-    .top-bar {
-      background: var(--slate-2);
-      color: var(--white);
-      padding: 10px 5%;
-      font-size: 14px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .top-bar span { color: var(--neon); font-weight: 800; }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(31, 41, 51, .96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    nav {
-      width: min(1180px, 90%);
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 0;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--white);
-      font-weight: 900;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-    }
-
-    .logo-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--neon);
-      color: var(--slate-2);
-      display: grid;
-      place-items: center;
-      font-weight: 1000;
-      box-shadow: 0 0 24px rgba(204,255,0,.45);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 22px;
-      align-items: center;
-      color: var(--white);
-      font-weight: 700;
-      font-size: 14px;
-    }
-
-    .nav-links a:hover { color: var(--neon); }
-
-    .nav-cta {
-      background: var(--neon);
-      color: var(--slate-2) !important;
-      padding: 11px 17px;
-      border-radius: 999px;
-      box-shadow: 0 0 24px rgba(204,255,0,.35);
-    }
-
-    .hero {
-      background:
-        radial-gradient(circle at 20% 20%, rgba(204,255,0,.25), transparent 28%),
-        linear-gradient(135deg, rgba(17,24,39,.96), rgba(31,41,51,.93)),
-        url('https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?auto=format&fit=crop&w=1600&q=80') center/cover;
-      color: var(--white);
-      min-height: 86vh;
-      display: grid;
-      align-items: center;
-      padding: 70px 5%;
-    }
-
-    .hero-inner {
-      width: min(1180px, 100%);
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(204,255,0,.12);
-      border: 1px solid rgba(204,255,0,.35);
-      color: var(--neon);
-      padding: 9px 14px;
-      border-radius: 999px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .9px;
-      font-size: 12px;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: clamp(42px, 7vw, 86px);
-      line-height: .95;
-      margin: 0 0 22px;
-      letter-spacing: -3px;
-    }
-
-    .highlight { color: var(--neon); text-shadow: 0 0 30px rgba(204,255,0,.25); }
-
-    .hero p {
-      font-size: clamp(17px, 2vw, 22px);
-      color: #e8edf1;
-      max-width: 720px;
-      margin-bottom: 30px;
-    }
-
-    .button-row { display: flex; gap: 14px; flex-wrap: wrap; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 15px 22px;
-      border-radius: 999px;
-      font-weight: 900;
-      border: 2px solid transparent;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-      cursor: pointer;
-    }
-
-    .btn:hover { transform: translateY(-2px); }
-
-    .btn-primary {
-      background: var(--neon);
-      color: var(--slate-2);
-      box-shadow: 0 0 30px rgba(204,255,0,.42);
-    }
-
-    .btn-secondary {
-      border-color: rgba(255,255,255,.35);
-      color: var(--white);
-      background: rgba(255,255,255,.06);
-    }
-
-    .hero-card {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .photo-placeholder {
-      min-height: 360px;
-      border-radius: 20px;
-      border: 2px dashed rgba(204,255,0,.65);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 24px;
-      background: linear-gradient(145deg, rgba(204,255,0,.18), rgba(255,255,255,.05));
-      color: var(--white);
-      font-weight: 800;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .stat {
-      background: rgba(17,24,39,.7);
-      border-radius: 18px;
-      padding: 16px;
-      text-align: center;
-    }
-
-    .stat strong { display: block; color: var(--neon); font-size: 26px; line-height: 1; }
-    .stat span { font-size: 12px; color: #d7dde2; font-weight: 800; }
-
-    section { padding: 86px 5%; }
-    .container { width: min(1180px, 100%); margin: auto; }
-
-    .section-head {
-      max-width: 780px;
-      margin-bottom: 34px;
-    }
-
-    .section-head.center { text-align: center; margin-left: auto; margin-right: auto; }
-
-    h2 {
-      font-size: clamp(32px, 5vw, 54px);
-      line-height: 1;
-      margin: 0 0 14px;
-      letter-spacing: -1.8px;
-      color: var(--slate-2);
-    }
-
-    .section-head p { font-size: 18px; color: #4b5563; margin: 0; }
-
-    .split {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 38px;
-      align-items: center;
-    }
-
-    .about-card, .notice, .service-card, .testimonial, .form-card, .availability-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 26px;
-      box-shadow: 0 14px 40px rgba(15,23,42,.08);
-      border: 1px solid rgba(15,23,42,.06);
-    }
-
-    .about-image {
-      min-height: 520px;
-      border-radius: var(--radius);
-      background:
-        linear-gradient(145deg, rgba(204,255,0,.24), rgba(31,41,51,.1)),
-        #e4e8eb;
-      border: 3px dashed rgba(31,41,51,.35);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 30px;
-      font-weight: 900;
-      color: var(--slate-2);
-    }
-
-    .pill-list { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
-
-    .pill {
-      background: var(--slate-2);
-      color: var(--white);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 13px;
-    }
-
-    .pill.neon { background: var(--neon); color: var(--slate-2); }
-
-    .dark-section {
-      background: var(--slate-2);
-      color: var(--white);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .dark-section:before {
-      content: '';
-      position: absolute;
-      width: 360px;
-      height: 360px;
-      background: rgba(204,255,0,.12);
-      border-radius: 50%;
-      top: -120px;
-      right: -80px;
-      filter: blur(8px);
-    }
-
-    .dark-section h2, .dark-section .section-head p { color: var(--white); }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .problem-card {
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 22px;
-      padding: 24px;
-    }
-
-    .problem-card h3 { margin: 0 0 8px; color: var(--neon); font-size: 23px; }
-    .problem-card p { color: #dbe3ea; margin: 0; }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .services-grid.care-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .service-note {
-      display: inline-block;
-      background: #eef2f4;
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 12px;
-      font-weight: 900;
-      color: var(--slate-3);
-      margin-bottom: 10px;
-    }
-
-    .service-card { position: relative; overflow: hidden; }
-    .service-card.featured { border: 3px solid var(--neon); transform: translateY(-8px); }
-    .service-card.featured:before {
-      content: 'MOST POPULAR';
-      position: absolute;
-      right: -46px;
-      top: 24px;
-      background: var(--neon);
-      color: var(--slate-2);
-      padding: 8px 48px;
-      transform: rotate(35deg);
-      font-size: 11px;
-      font-weight: 1000;
-    }
-
-    .service-card h3 { font-size: 26px; margin: 0 0 8px; }
-    .price { font-size: 42px; font-weight: 1000; color: var(--slate-2); margin: 12px 0; }
-    .price small { font-size: 15px; color: #64748b; }
-
-    ul.clean { padding-left: 18px; margin: 18px 0 24px; }
-    ul.clean li { margin-bottom: 10px; }
-
-    .notice {
-      border-left: 8px solid var(--neon);
-      margin-top: 26px;
-      background: #fbfff0;
-    }
-
-    .notice strong { color: var(--slate-2); }
-
-    .testimonial-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .media-box {
-      height: 240px;
-      border-radius: 18px;
-      border: 2px dashed #94a3b8;
-      background: #eef2f4;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 18px;
-      font-weight: 900;
-      color: var(--slate-3);
-      margin-bottom: 16px;
-    }
-
-    .testimonial blockquote { margin: 0; font-size: 18px; font-weight: 700; }
-    .testimonial cite { display: block; margin-top: 14px; color: #64748b; font-style: normal; font-weight: 900; }
-
-    .booking-wrap {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 24px;
-      align-items: start;
-    }
-
-    .calendar-shell { margin-top: 16px; }
-
-    .calendar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .calendar-header h4 { margin: 0; font-size: 20px; }
-
-    .calendar-nav {
-      border: 0;
-      background: var(--slate-2);
-      color: var(--white);
-      border-radius: 999px;
-      width: 38px;
-      height: 38px;
-      font-weight: 1000;
-      cursor: pointer;
-    }
-
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 8px;
-    }
-
-    .day-name {
-      text-align: center;
-      font-size: 12px;
-      font-weight: 1000;
-      color: #64748b;
-      text-transform: uppercase;
-    }
-
-    .calendar-day {
-      min-height: 72px;
-      border: 2px solid #d7dde2;
-      border-radius: 16px;
-      background: var(--white);
-      color: var(--slate-2);
-      font-weight: 1000;
-      cursor: pointer;
-      padding: 8px;
-      text-align: left;
-      transition: .2s;
-    }
-
-    .calendar-day.empty { visibility: hidden; }
-    .calendar-day.no-slots { opacity: .38; cursor: not-allowed; }
-    .calendar-day.has-slots { border-color: rgba(204,255,0,.95); background: #fbfff0; }
-    .calendar-day.has-slots:after { content: 'Available'; display:block; font-size: 10px; color:#64748b; margin-top: 8px; }
-    .calendar-day:hover, .calendar-day.selected { border-color: var(--neon); background: #f4ffc1; box-shadow: 0 0 0 4px rgba(204,255,0,.2); }
-
-    .time-panel {
-      margin-top: 16px;
-      background: #eef2f4;
-      border-radius: 18px;
-      padding: 14px;
-    }
-
-    .time-panel h4 { margin: 0 0 10px; }
-
-    .time-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .time-slot {
-      border: 2px solid #d7dde2;
-      background: var(--white);
-      border-radius: 999px;
-      padding: 10px 13px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .time-slot:hover, .time-slot.selected {
-      border-color: var(--neon);
-      background: var(--neon);
-      color: var(--slate-2);
-    }
-
-    .selected-time {
-      margin-top: 12px;
-      font-weight: 900;
-      color: var(--slate-2);
-    }
-
-    form { display: grid; gap: 14px; }
-
-    label { font-weight: 900; color: var(--slate-2); }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 13px 14px;
-      border-radius: 14px;
-      border: 2px solid #d7dde2;
-      font: inherit;
-      background: var(--white);
-    }
-
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--neon);
-      box-shadow: 0 0 0 4px rgba(204,255,0,.25);
-    }
-
-    textarea { min-height: 120px; resize: vertical; }
-
-    .form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-
-    .footer-cta {
-      text-align: center;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(204,255,0,.24), transparent 30%),
-        var(--slate-2);
-      color: var(--white);
-      padding: 82px 5%;
-    }
-
-    .footer-cta h2 { color: var(--white); }
-    .footer-cta p { max-width: 740px; margin: 0 auto 28px; color: #dbe3ea; font-size: 18px; }
-
-    footer {
-      background: #0b1118;
-      color: #cbd5df;
-      padding: 26px 5%;
-      text-align: center;
-      font-size: 14px;
-    }
-
-    .edit-note {
-      background: #eef2f4;
-      border-radius: 14px;
-      padding: 14px;
-      color: #475569;
-      font-size: 14px;
-      margin-top: 14px;
-    }
-
-    @media (max-width: 900px) {
-      .hero-inner, .split, .booking-wrap, .services-grid, .grid-3, .testimonial-grid { grid-template-columns: 1fr; }
-      nav { align-items: flex-start; gap: 14px; flex-direction: column; }
-      .nav-links { width: 100%; overflow-x: auto; padding-bottom: 6px; gap: 10px; }
-      .nav-links a { white-space: nowrap; background: rgba(255,255,255,.08); padding: 9px 12px; border-radius: 999px; }
-      .stats, .form-row { grid-template-columns: 1fr; }
-      .service-card.featured { transform: none; }
-      section { padding: 62px 5%; }
-      .hero { min-height: auto; }
-    }
-  </style>
+  <title>Escalante Dog Training | Winchester, Temecula & Murrieta Dog Trainer</title>
+  <meta name="description" content="Balanced dog training in Winchester, CA specializing in large breeds, leash pulling, obedience, leash reactivity, private lessons, board and train, daycare, and boarding for existing training clients. Serving Temecula, Murrieta, Menifee, French Valley, Hemet, Wildomar, Lake Elsinore, and surrounding areas." />
+  <meta name="keywords" content="dog trainer Winchester CA, dog training Temecula, dog trainer Murrieta, leash reactivity training Temecula, balanced dog trainer, board and train Temecula, large breed dog training, prong collar dog training, Escalante Dog Training" />
+  <meta name="author" content="Escalante Dog Training" />
+  <meta property="og:title" content="Escalante Dog Training | Build Your Best Friend" />
+  <meta property="og:description" content="Balanced dog training for calm, confident dogs and educated owners. Private lessons, packages, board and train, daycare, and boarding from Winchester, CA." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/images/logo.png" />
+  <link rel="icon" href="assets/images/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Escalante Dog Training",
+    "image": "assets/images/logo.png",
+    "email": "escalantedogtraining@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Winchester", "addressRegion": "CA", "addressCountry": "US" },
+    "areaServed": ["Winchester", "Temecula", "Murrieta", "Menifee", "French Valley", "Hemet", "Wildomar", "Lake Elsinore"],
+    "description": "Balanced dog training specializing in large breeds, leash pulling, obedience, leash reactivity, private lessons, board and train, daycare, and boarding for existing training clients."
+  }
+  </script>
 </head>
 <body>
-  <div class="top-bar">
-    <div><span>Winchester, CA</span> dog training for real-world obedience</div>
-    <div>Email: <a href="mailto:escalantedogtraining@gmail.com">escalantedogtraining@gmail.com</a></div>
-  </div>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header>
-    <nav>
-      <a class="logo" href="#home" aria-label="Escalante Dog Training home">
-        <div class="logo-mark">E</div>
-        <div>Escalante<br>Dog Training</div>
+  <header class="site-header" id="top">
+    <div class="nav-wrap">
+      <a class="brand" href="#home" aria-label="Escalante Dog Training home">
+        <img src="assets/images/logo.png" alt="Escalante Dog Training pointing Weimaraner logo" />
       </a>
-      <div class="nav-links section-tabs" aria-label="Website sections">
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
         <a href="#about">About</a>
-        <a href="#problems">Problems</a>
         <a href="#services">Services</a>
-        <a href="#care">Day Care & Boarding</a>
-        <a href="#methods">Methods</a>
-        <a href="#testimonials">Results</a>
-        <a href="#booking" class="nav-cta">Book a Session</a>
-      </div>
-    </nav>
+        <a href="#success-stories">Success Stories</a>
+        <a href="#fit">Is My Dog a Fit?</a>
+        <a href="#booking">Book</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="nav-cta" href="#booking">Book Now</a>
+    </div>
   </header>
 
-  <main id="home">
-    <section class="hero">
-      <div class="hero-inner">
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <p class="eyebrow">Balanced Dog Training • Winchester, CA</p>
+        <h1>Build Your <span>Best Friend.</span></h1>
+        <p class="hero-copy">Training for owners who want a calmer, clearer, more confident relationship with their dog — especially large breeds that pull, ignore commands, or react on leash.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#booking">Book Your Evaluation</a>
+          <a class="btn btn-secondary" href="#services">View Services</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="Training highlights">
+      <div class="container trust-grid">
+        <div><span>Owner Education</span><p>You learn how to keep the results.</p></div>
+        <div><span>Balanced Training</span><p>Clear communication, real-world expectations.</p></div>
+        <div><span>Large Breed Focus</span><p>Built for powerful dogs and big personalities.</p></div>
+        <div><span>Real World Obedience</span><p>Skills that work outside your living room.</p></div>
+        <div><span>Lifelong Skills</span><p>Confidence and structure that lasts.</p></div>
+      </div>
+    </section>
+
+    <section class="section intro" id="about">
+      <div class="container two-col">
+        <div class="photo-card placeholder-photo">
+          <div class="photo-label">Add photo of Nicole + Sunshine here</div>
+        </div>
         <div>
-          <div class="eyebrow">Large dog obedience • leash manners • reactivity help</div>
-          <h1>Turn your powerful dog into a <span class="highlight">well-mannered</span> best friend.</h1>
-          <p>Private training, owner coaching, training packages, and board and train options for owners who are tired of pulling, barking, chaos, and feeling embarrassed in public.</p>
-          <div class="button-row">
-            <a class="btn btn-primary" href="#booking">Request a Training Spot →</a>
-            <a class="btn btn-secondary" href="#services">View Services</a>
-          </div>
-        </div>
-        <div class="hero-card">
-          <div class="photo-placeholder">
-            Replace this box with your best hero photo or video:<br><br>
-            Nicole working with a dog, your Weimaraner heeling, or a before/after transformation.
-          </div>
-          <div class="stats">
-            <div class="stat"><strong>1:1</strong><span>hands-on coaching</span></div>
-            <div class="stat"><strong>Large</strong><span>dog focused</span></div>
-            <div class="stat"><strong>Real</strong><span>world manners</span></div>
+          <p class="eyebrow">Meet Nicole</p>
+          <h2>Your dog’s success is my mission.</h2>
+          <p>Meet the owner and dog trainer of <strong>Escalante Dog Training</strong> — Nicole Escalante.</p>
+          <p>I got my first dog in January 2023: a Weimaraner puppy named Sunshine. I became obsessed with turning her into the best possible dog and giving her the tools to navigate her natural high-energy temperament. She is now my best friend and a true head-turner.</p>
+          <p>People constantly compliment how well mannered she is in public — especially when she is calmly heeling while other dogs are barking, pulling, and dragging their owners around.</p>
+          <p>Since then, I have trained dogs for friends, family, and foster dogs from the shelter. Now I am expanding into personal dog training to help owners build the same clear communication, structure, and confidence with their dogs.</p>
+          <div class="location-card">
+            <strong>Training takes place at my home in Winchester, CA.</strong>
+            <span>Conveniently serving Temecula, Murrieta, Menifee, French Valley, Hemet, Wildomar, Lake Elsinore, and surrounding communities.</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="about">
-      <div class="container split">
-        <div class="about-image">
-          Add photo of Nicole + dog here<br><br>
-          Tip: name the file <code>nicole-dog.jpg</code>, upload it next to this HTML file, and replace this box with:<br>
-          <code>&lt;img src="nicole-dog.jpg" alt="Nicole Escalante with a trained dog"&gt;</code>
-        </div>
-        <div class="about-card">
-          <div class="eyebrow" style="color: var(--slate-2); border-color: rgba(31,41,51,.15); background:#f4ffc1;">Meet your trainer</div>
-          <h2>Hi, I’m Nicole Escalante.</h2>
-          <p>I’m the owner and dog trainer behind <strong>Escalante Dog Training</strong> in Winchester, CA.</p>
-          <p>I got my first dog in January 2023, a Weimaraner puppy, and immediately became obsessed with learning how to give her the proper tools to navigate her natural high-energy nature. Today, she is my best friend and a true head-turner. People constantly compliment how well-mannered she is in public, especially when she is calmly heeling while other dogs are barking and pulling.</p>
-          <p>Since then, I have trained dogs for friends, family, and foster dogs from the shelter. Now I’m expanding into personal dog training so I can help more owners understand how to turn their best friend into a calm, confident, well-mannered pup.</p>
-          <div class="pill-list">
-            <span class="pill neon">Owner-focused coaching</span>
-            <span class="pill">Large dog experience</span>
-            <span class="pill">Leash manners</span>
-            <span class="pill">Obedience</span>
-            <span class="pill">Reactivity help</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="dark-section" id="problems">
+    <section class="section services" id="services">
       <div class="container">
-        <div class="section-head center">
-          <h2>For dogs who are strong, stubborn, reactive, or simply never learned the rules.</h2>
-          <p>Training is not just about commands. It is about building communication, structure, confidence, and follow-through in the moments that matter.</p>
+        <div class="section-heading centered">
+          <p class="eyebrow">Services & Pricing</p>
+          <h2>Training for every stage of your dog’s life.</h2>
+          <p>Choose the level of support that fits your goals, your schedule, and your dog’s needs.</p>
         </div>
-        <div class="grid-3">
-          <div class="problem-card">
-            <h3>Pulling on leash</h3>
-            <p>Stop getting dragged around. Build clear leash communication, better focus, and calmer walks.</p>
+
+        <div class="cards service-grid">
+          <article class="card service-card">
+            <div class="card-image placeholder-small">Private Lesson Photo</div>
+            <h3>Private Lesson</h3>
+            <p class="price">$100 <span>/ 1 hour</span></p>
+            <p>One-on-one training for obedience, leash skills, pulling, reactivity, and owner handling. I work with you so you can implement the training at home.</p>
+          </article>
+          <article class="card service-card featured">
+            <div class="card-image placeholder-small">Package Photo</div>
+            <h3>The Foundation Package</h3>
+            <p class="price">$600 <span>/ 10 sessions</span></p>
+            <p>Ten 1-hour private sessions for owners who want structure, accountability, and lasting progress over time.</p>
+          </article>
+          <article class="card service-card">
+            <div class="card-image placeholder-small">Board & Train Photo</div>
+            <h3>2-Week Board & Train</h3>
+            <p class="price">$1,000</p>
+            <p>A focused two-week program for faster progress, structure, and foundation obedience in a controlled home setting.</p>
+          </article>
+          <article class="card service-card">
+            <div class="card-image placeholder-small">Advanced Board & Train Photo</div>
+            <h3>4-Week Board & Train</h3>
+            <p class="price">$2,000</p>
+            <p>A deeper reset for dogs needing more consistency, repetition, manners, leash work, and calm state-of-mind practice.</p>
+          </article>
+          <article class="card service-card client-only">
+            <div class="card-image placeholder-small">Daycare Photo</div>
+            <h3>Training Client Daycare</h3>
+            <p class="price">$40 <span>/ day</span></p>
+            <p>For existing training clients only. A structured daycare option so your dog’s training is not undone while you are away.</p>
+            <p class="note">Includes enrichment, structure, and appropriate dog socialization. No one-on-one training session is included.</p>
+          </article>
+          <article class="card service-card client-only">
+            <div class="card-image placeholder-small">Boarding Photo</div>
+            <h3>Training Client Boarding</h3>
+            <p class="price">$50 <span>/ night</span></p>
+            <p>For existing training clients only. Safe, structured boarding with someone who already knows your dog and your training goals.</p>
+            <p class="note">No one-on-one training session is included during boarding.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark split" id="philosophy">
+      <div class="container two-col">
+        <div>
+          <p class="eyebrow">Training Philosophy</p>
+          <h2>Clear communication. Real consequences. Real results.</h2>
+          <p>I am not a positive-only dog trainer. My training uses balanced methods, structure, rewards, accountability, and tools such as prong collars when appropriate.</p>
+          <p>Prong collars are used during training sessions with all dogs. They are introduced with guidance so owners understand how to use them clearly and fairly.</p>
+        </div>
+        <div class="warning-box">
+          <h3>Important Method Notice</h3>
+          <p>By booking, you acknowledge that Escalante Dog Training uses balanced training methods, including tools such as prong collars and consequences for unwanted behavior.</p>
+          <p>Dogs with dog aggression must be muzzled. Dogs with human aggression or bite history are not accepted.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fit" id="fit">
+      <div class="container">
+        <div class="section-heading centered">
+          <p class="eyebrow">Is My Program Right for Your Dog?</p>
+          <h2>Built for owners who are ready to do the work.</h2>
+          <p>This program is best for people who want honest feedback, clear structure, and training that continues after the session ends.</p>
+        </div>
+        <div class="fit-grid">
+          <div class="fit-card yes">
+            <h3>Great Fit</h3>
+            <ul>
+              <li>Large breeds and powerful dogs</li>
+              <li>Leash pulling</li>
+              <li>Ignoring known commands</li>
+              <li>Jumping, overexcitement, and poor manners</li>
+              <li>Leash reactivity</li>
+              <li>Owners who want to learn and practice</li>
+              <li>Dogs that need structure and consistency</li>
+            </ul>
           </div>
-          <div class="problem-card">
-            <h3>Ignoring commands</h3>
-            <p>Teach your dog that commands are not optional, while giving you the confidence to follow through fairly.</p>
-          </div>
-          <div class="problem-card">
-            <h3>Leash reactivity</h3>
-            <p>Work on barking, lunging, over-excitement, and learning how to safely handle triggers in public.</p>
+          <div class="fit-card no">
+            <h3>Not a Fit</h3>
+            <ul>
+              <li>Human aggression</li>
+              <li>Bite history</li>
+              <li>Severe behavioral cases needing a veterinary behaviorist</li>
+              <li>Owners who are not comfortable with prong collars or balanced training</li>
+              <li>Dogs with dog aggression that cannot safely wear a muzzle</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="services">
+    <section class="section success" id="success-stories">
       <div class="container">
-        <div class="section-head center">
-          <h2>Services & Pricing</h2>
-          <p>Choose the level of support that fits your dog. Every training option includes owner education because lasting change depends on you understanding how to keep the rules clear at home, on walks, and in public.</p>
+        <div class="section-heading centered">
+          <p class="eyebrow">Success Stories</p>
+          <h2>Real dogs. Real progress.</h2>
+          <p>Add before/after photos, videos, owner reviews, and transformation stories here as your training portfolio grows.</p>
         </div>
-
-        <div class="services-grid">
-          <div class="service-card">
-            <h3>Single Training Session</h3>
-            <div class="price">$100 <small>/ 1-hour session</small></div>
-            <p>Perfect for owners who need help with a specific issue or want to get a feel for training before committing to a package.</p>
-            <ul class="clean">
-              <li>One-on-one training with Nicole</li>
-              <li>Leash manners, obedience, reactivity foundations, or problem solving</li>
-              <li>Hands-on owner coaching so you can continue the work at home</li>
-              <li>Custom homework plan after the session</li>
-            </ul>
-            <a class="btn btn-primary" href="#booking">Request This</a>
-          </div>
-
-          <div class="service-card featured">
-            <h3>Training Package</h3>
-            <div class="price">$600 <small>/ 10 one-hour sessions</small></div>
-            <p>Best for real progress and the strongest value. We build consistency over multiple sessions and help you implement training in your everyday routine.</p>
-            <ul class="clean">
-              <li>10 private 1-hour training sessions</li>
-              <li>Clear training goals and step-by-step progression</li>
-              <li>Owner handling practice each session</li>
-              <li>Great for pulling, leash reactivity, basic obedience, and manners</li>
-            </ul>
-            <a class="btn btn-primary" href="#booking">Request This</a>
-          </div>
-
-          <div class="service-card">
-            <h3>Board & Train</h3>
-            <div class="price">$1,000+ <small>/ board & train</small></div>
-            <p>For owners who want a more immersive training option where their dog receives daily structure, handling, and training before transferring the system back to you.</p>
-            <ul class="clean">
-              <li>2-week program: $1,000</li>
-              <li>4-week program: $2,000</li>
-              <li>Dog stays with trainer for hands-on training</li>
-              <li>Daily structure, leash work, obedience, and manners</li>
-              <li>Go-home lesson so you understand the training system</li>
-              <li>Owner follow-through required for lasting results</li>
-            </ul>
-            <a class="btn btn-primary" href="#booking">Request This</a>
-          </div>
-        </div>
-
-
-        <div class="section-head center" id="care" style="margin-top:58px;">
-          <div class="eyebrow" style="color: var(--slate-2); border-color: rgba(31,41,51,.15); background:#f4ffc1;">For existing training clients only</div>
-          <h2>Day Care & Boarding</h2>
-          <p>For dogs already enrolled in training sessions, these care options help keep structure consistent while your dog is with me. This is not a substitute for private training and does not include one-on-one training sessions during the stay.</p>
-        </div>
-
-        <div class="services-grid care-grid">
-          <div class="service-card">
-            <span class="service-note">Existing training clients only</span>
-            <h3>Structured Day Care</h3>
-            <div class="price">$40 <small>/ day</small></div>
-            <p>A structured day with clear expectations, calm handling, and safe socialization opportunities with appropriate dogs.</p>
-            <ul class="clean">
-              <li>Maintains the manners and boundaries your dog is already learning</li>
-              <li>Socialization with other dogs when appropriate and safe</li>
-              <li>No private one-on-one training lesson included</li>
-            </ul>
-            <a class="btn btn-primary" href="#booking">Request Day Care</a>
-          </div>
-
-          <div class="service-card">
-            <span class="service-note">Existing training clients only</span>
-            <h3>Structured Boarding</h3>
-            <div class="price">$50 <small>/ night</small></div>
-            <p>Boarding for current training clients who want peace of mind that their dog’s structure, rules, and manners will not be lost while they are away.</p>
-            <ul class="clean">
-              <li>Consistent handling from someone who knows your dog’s training</li>
-              <li>Safe routine, structure, and appropriate dog socialization</li>
-              <li>No private one-on-one training lesson included</li>
-            </ul>
-            <a class="btn btn-primary" href="#booking">Request Boarding</a>
-          </div>
-        </div>
-
-        <div class="notice" id="methods">
-          <h3>Training Method Disclaimer</h3>
-          <p><strong>Please read before booking:</strong> Escalante Dog Training is not a positive-only training program. I use balanced training methods and tools, including prong collars, during training sessions. Prong collars are used as a communication tool and as a consequence when appropriate. If you are not comfortable with prong collar training or balanced training methods, this may not be the right fit.</p>
-          <p><strong>Safety policy:</strong> Dogs with dog aggression must be properly muzzle conditioned and muzzled during training. I do not accept dogs with human aggression or a bite history.</p>
+        <div class="story-grid">
+          <article class="story-card">
+            <div class="before-after">
+              <div class="placeholder-small">Before</div>
+              <div class="placeholder-small">After</div>
+            </div>
+            <h3>Hudson</h3>
+            <p class="dog-meta">1-year-old unneutered male foster dog</p>
+            <p><strong>Focus:</strong> Reactivity, dog aggression concerns, pulling, structure, neutrality, and confidence.</p>
+            <a href="#booking">Start a story like Hudson’s →</a>
+          </article>
+          <article class="story-card">
+            <div class="before-after">
+              <div class="placeholder-small">Before</div>
+              <div class="placeholder-small">After</div>
+            </div>
+            <h3>Callie</h3>
+            <p class="dog-meta">4-year-old spayed female foster dog</p>
+            <p><strong>Focus:</strong> Leash reactivity, calm walks, owner education, and continued progress after adoption.</p>
+            <a href="#booking">Start a story like Callie’s →</a>
+          </article>
+          <article class="story-card dark-card">
+            <h3>Your Dog Could Be Next.</h3>
+            <p>Whether your dog is dragging you down the street or struggling around other dogs, we can build a clearer path forward.</p>
+            <a class="btn btn-primary" href="#booking">Book Now</a>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="testimonials" style="background:#eef2f4;">
+    <section class="section media-section" id="media">
       <div class="container">
-        <div class="section-head center">
-          <h2>Real dogs. Real owners. Real results.</h2>
-          <p>Use this section for reviews, transformation photos, short training clips, and before-and-after leash walking videos.</p>
+        <div class="section-heading centered">
+          <p class="eyebrow">Photo & Video Ideas</p>
+          <h2>What to capture for the website.</h2>
+          <p>You do not need perfect content right now. When you are ready, these shots will make the site feel custom and professional.</p>
         </div>
-        <div class="testimonial-grid">
-          <div class="testimonial">
-            <div class="media-box">Before/after photo or video placeholder</div>
-            <blockquote>“Add a client review here about pulling, leash reactivity, obedience, or confidence in public.”</blockquote>
-            <cite>— Client Name + Dog Name</cite>
-          </div>
-          <div class="testimonial">
-            <div class="media-box">Training clip placeholder</div>
-            <blockquote>“Add a review here about how the owner learned to handle their dog at home and on walks.”</blockquote>
-            <cite>— Client Name + Dog Name</cite>
-          </div>
-          <div class="testimonial">
-            <div class="media-box">Transformation photo placeholder</div>
-            <blockquote>“Add a foster dog success story or friend/family dog transformation here.”</blockquote>
-            <cite>— Client Name + Dog Name</cite>
-          </div>
-          <div class="testimonial">
-            <div class="media-box">Public obedience video placeholder</div>
-            <blockquote>“Add a review about calm public manners, improved leash walking, or better focus.”</blockquote>
-            <cite>— Client Name + Dog Name</cite>
-          </div>
+        <div class="media-grid">
+          <div class="media-card">Sunshine in heel beside you</div>
+          <div class="media-card">Recall toward camera</div>
+          <div class="media-card">Down stay with distractions</div>
+          <div class="media-card">You coaching an owner</div>
+          <div class="media-card">Before/after leash reactivity clip</div>
+          <div class="media-card">Calm walk near another dog</div>
         </div>
       </div>
     </section>
 
-    <section id="booking">
-      <div class="container">
-        <div class="section-head center">
-          <h2>Request a Training Session</h2>
-          <p>Choose an available time, answer a few questions, and send your request directly to Nicole at escalantedogtraining@gmail.com.</p>
-        </div>
-        <div class="booking-wrap">
-          <div class="availability-card">
-            <h3>Available Times</h3>
-            <p>Click a highlighted date, then choose a time. You can edit these dates and times inside the <code>availableSlots</code> list near the bottom of this file.</p>
-            <div class="calendar-shell" id="calendar"></div>
-            <div class="edit-note">
-              Static GitHub websites cannot automatically sync to your personal calendar without an outside scheduling tool. This built-in version lets you manually update your available times. For automatic booking, connect Calendly, Google Calendar appointment schedules, or another scheduler later.
+    <section class="section booking" id="booking">
+      <div class="container two-col">
+        <div>
+          <p class="eyebrow">Book Training</p>
+          <h2>Request your evaluation.</h2>
+          <p>Select a date and available time, tell me about your dog, and the form will open an email request to <strong>escalantedogtraining@gmail.com</strong>.</p>
+          <p class="small-text">You can edit available days/times in <code>assets/js/script.js</code>.</p>
+          <div class="calendar-shell">
+            <div class="calendar-header">
+              <button id="prevMonth" aria-label="Previous month">‹</button>
+              <h3 id="calendarTitle">Calendar</h3>
+              <button id="nextMonth" aria-label="Next month">›</button>
+            </div>
+            <div class="calendar-days" aria-hidden="true">
+              <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+            <div class="calendar-grid" id="calendarGrid"></div>
+            <div class="times-panel">
+              <h4 id="selectedDateLabel">Select a date</h4>
+              <div id="timeSlots" class="time-slots"></div>
             </div>
           </div>
+        </div>
 
-          <div class="form-card">
-            <form id="bookingForm">
-              <input type="hidden" id="selectedSlot" name="selectedSlot" />
-
-              <div class="form-row">
-                <div>
-                  <label for="ownerName">Your Name</label>
-                  <input id="ownerName" name="ownerName" required />
-                </div>
-                <div>
-                  <label for="phone">Phone Number</label>
-                  <input id="phone" name="phone" />
-                </div>
-              </div>
-
-              <div>
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" required />
-              </div>
-
-              <div class="form-row">
-                <div>
-                  <label for="dogName">Dog’s Name</label>
-                  <input id="dogName" name="dogName" required />
-                </div>
-                <div>
-                  <label for="dogAge">Dog’s Age</label>
-                  <input id="dogAge" name="dogAge" placeholder="Example: 2 years" required />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div>
-                  <label for="breed">Breed</label>
-                  <input id="breed" name="breed" required />
-                </div>
-                <div>
-                  <label for="sex">Sex</label>
-                  <select id="sex" name="sex" required>
-                    <option value="">Select one</option>
-                    <option>Male</option>
-                    <option>Female</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div>
-                  <label for="fixed">Spayed/Neutered?</label>
-                  <select id="fixed" name="fixed" required>
-                    <option value="">Select one</option>
-                    <option>Yes</option>
-                    <option>No</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="service">Service Interested In</label>
-                  <select id="service" name="service" required>
-                    <option value="">Select one</option>
-                    <option>Single Training Session - $100</option>
-                    <option>Training Package - 10 sessions for $600</option>
-                    <option>2 Week Board & Train - $1,000</option>
-                    <option>4 Week Board & Train - $2,000</option>
-                    <option>Structured Day Care - $40/day, existing clients only</option>
-                    <option>Structured Boarding - $50/night, existing clients only</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div>
-                  <label for="biteHistory">Bite History?</label>
-                  <select id="biteHistory" name="biteHistory" required>
-                    <option value="">Select one</option>
-                    <option>No</option>
-                    <option>Yes</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="humanAggression">Human Aggression?</label>
-                  <select id="humanAggression" name="humanAggression" required>
-                    <option value="">Select one</option>
-                    <option>No</option>
-                    <option>Yes</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label for="dogAggression">Dog Aggression / Reactivity Details</label>
-                <textarea id="dogAggression" name="dogAggression" placeholder="Tell me if your dog barks, lunges, growls, pulls toward dogs, or has ever fought with another dog."></textarea>
-              </div>
-
-              <div>
-                <label for="problems">What problems are you having with your dog?</label>
-                <textarea id="problemsInput" name="problems" required placeholder="Example: Pulling on walks, barking at dogs, not listening, jumping, no recall, over-excitement, etc."></textarea>
-              </div>
-
-              <label style="display:flex; gap:10px; align-items:flex-start; font-weight:800;">
-                <input type="checkbox" required style="width:auto; margin-top:5px;">
-                I understand Escalante Dog Training uses balanced training methods, including prong collars, and is not a positive-only training program.
-              </label>
-
-              <button class="btn btn-primary" type="submit">Send Training Request →</button>
-              <p id="formMessage" style="margin:0; color:#64748b; font-size:14px;">This will open your email app with the request filled in.</p>
-            </form>
+        <form class="booking-form" id="bookingForm">
+          <h3>Dog Training Request</h3>
+          <label>Your Name<input required name="name" type="text" placeholder="Your full name" /></label>
+          <label>Email<input required name="email" type="email" placeholder="you@example.com" /></label>
+          <label>Phone<input name="phone" type="tel" placeholder="(555) 555-5555" /></label>
+          <label>Service Interested In
+            <select name="service" required>
+              <option value="">Select one</option>
+              <option>Private Lesson - $100</option>
+              <option>Foundation Package - $600</option>
+              <option>2-Week Board & Train - $1,000</option>
+              <option>4-Week Board & Train - $2,000</option>
+              <option>Existing Client Daycare - $40/day</option>
+              <option>Existing Client Boarding - $50/night</option>
+            </select>
+          </label>
+          <div class="form-row">
+            <label>Dog's Name<input name="dogName" type="text" /></label>
+            <label>Dog's Age<input name="dogAge" type="text" /></label>
           </div>
+          <div class="form-row">
+            <label>Breed<input name="breed" type="text" /></label>
+            <label>Sex
+              <select name="sex"><option value="">Select</option><option>Male</option><option>Female</option></select>
+            </label>
+          </div>
+          <label>Fixed?
+            <select name="fixed"><option value="">Select</option><option>Yes</option><option>No</option></select>
+          </label>
+          <label>Any bite history or human aggression?
+            <select name="biteHistory" required><option value="">Select</option><option>No</option><option>Yes</option></select>
+          </label>
+          <label>Dog aggression or leash reactivity?
+            <select name="reactivity"><option value="">Select</option><option>No</option><option>Leash reactivity</option><option>Dog aggression - can muzzle</option><option>Dog aggression - cannot muzzle</option></select>
+          </label>
+          <label>What problems are you having with your dog?
+            <textarea name="problems" rows="5" placeholder="Pulling, barking, ignoring commands, leash reactivity, jumping, etc."></textarea>
+          </label>
+          <input type="hidden" name="requestedDate" id="requestedDate" />
+          <input type="hidden" name="requestedTime" id="requestedTime" />
+          <button class="btn btn-primary full" type="submit">Send Email Request</button>
+          <p class="form-note">This form opens your email app. You can also email directly: <a href="mailto:escalantedogtraining@gmail.com">escalantedogtraining@gmail.com</a></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="container">
+        <div class="section-heading centered">
+          <p class="eyebrow">FAQ</p>
+          <h2>Before you book.</h2>
+        </div>
+        <div class="faq-list">
+          <details><summary>Where does training take place?</summary><p>All appointments take place at my home in Winchester, CA. I serve nearby cities including Temecula, Murrieta, Menifee, French Valley, Hemet, Wildomar, and Lake Elsinore.</p></details>
+          <details><summary>Do you train aggressive dogs?</summary><p>Dogs with dog aggression may be considered only if they can safely be muzzled. Dogs with human aggression or bite history are not accepted.</p></details>
+          <details><summary>Do you use prong collars?</summary><p>Yes. I use balanced training methods and tools such as prong collars during training sessions. I am not a positive-only trainer.</p></details>
+          <details><summary>Will you train my dog for me without me practicing?</summary><p>No. Owner education is a major part of the program. Your dog’s long-term results depend on your ability to continue the structure and communication at home.</p></details>
         </div>
       </div>
     </section>
 
-    <section class="footer-cta">
-      <div class="container">
-        <h2>Ready for calmer walks, better manners, and more control?</h2>
-        <p>You do not have to keep feeling embarrassed, frustrated, or overpowered by your dog. Let’s build the communication and structure your dog needs so you can actually enjoy life together.</p>
-        <a class="btn btn-primary" href="#booking">Book With Nicole</a>
+    <section class="cta-band" id="contact">
+      <div class="container cta-content">
+        <div>
+          <p class="eyebrow">Ready to start?</p>
+          <h2>Let’s build your best friend.</h2>
+          <p>Spots are limited. Reach out today to request training from Winchester, CA.</p>
+        </div>
+        <a class="btn btn-primary" href="mailto:escalantedogtraining@gmail.com">Email Nicole</a>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p><strong>Escalante Dog Training</strong> • Winchester, CA • <a href="mailto:escalantedogtraining@gmail.com">escalantedogtraining@gmail.com</a></p>
-    <p>© <span id="year"></span> Escalante Dog Training. All rights reserved.</p>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <img src="assets/images/logo.png" alt="Escalante Dog Training logo" />
+        <p>Balanced training. Real results. Lifelong bond.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <a href="mailto:escalantedogtraining@gmail.com">escalantedogtraining@gmail.com</a>
+        <p>Winchester, CA</p>
+      </div>
+      <div>
+        <h3>Service Area</h3>
+        <p>Winchester, Temecula, Murrieta, Menifee, French Valley, Hemet, Wildomar, Lake Elsinore, and surrounding areas.</p>
+      </div>
+    </div>
+    <p class="copyright">© <span id="year"></span> Escalante Dog Training. All rights reserved.</p>
   </footer>
 
-  <script>
-    // EDIT YOUR AVAILABLE DATES/TIMES HERE.
-    // Use YYYY-MM-DD dates so the calendar can place them visually.
-    // Add, remove, or change these slots whenever your schedule changes.
-    const availableSlots = [
-      { date: '2026-07-13', time: '9:00 AM', note: 'Private session' },
-      { date: '2026-07-13', time: '11:30 AM', note: 'Private session' },
-      { date: '2026-07-14', time: '10:00 AM', note: 'Private session' },
-      { date: '2026-07-17', time: '5:30 PM', note: 'Evening session' },
-      { date: '2026-07-20', time: '8:30 AM', note: 'Private session' },
-      { date: '2026-07-22', time: '6:00 PM', note: 'Consult / private session' }
-    ];
-
-    const calendarContainer = document.getElementById('calendar');
-    const selectedSlotInput = document.getElementById('selectedSlot');
-    const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    let activeMonth = new Date(availableSlots[0].date + 'T12:00:00');
-    let selectedDate = null;
-
-    function prettyDate(dateString) {
-      const date = new Date(dateString + 'T12:00:00');
-      return date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
-    }
-
-    function renderCalendar() {
-      const year = activeMonth.getFullYear();
-      const month = activeMonth.getMonth();
-      const firstDay = new Date(year, month, 1).getDay();
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-      const slotsByDate = availableSlots.reduce((acc, slot) => {
-        acc[slot.date] = acc[slot.date] || [];
-        acc[slot.date].push(slot);
-        return acc;
-      }, {});
-
-      calendarContainer.innerHTML = `
-        <div class="calendar-header">
-          <button class="calendar-nav" type="button" id="prevMonth" aria-label="Previous month">‹</button>
-          <h4>${monthNames[month]} ${year}</h4>
-          <button class="calendar-nav" type="button" id="nextMonth" aria-label="Next month">›</button>
-        </div>
-        <div class="calendar-grid" id="calendarGrid"></div>
-        <div class="time-panel" id="timePanel">
-          <h4>Select an available date</h4>
-          <p style="margin:0;color:#64748b;">Highlighted dates have openings.</p>
-        </div>
-      `;
-
-      document.getElementById('prevMonth').onclick = () => { activeMonth = new Date(year, month - 1, 1); renderCalendar(); };
-      document.getElementById('nextMonth').onclick = () => { activeMonth = new Date(year, month + 1, 1); renderCalendar(); };
-
-      const grid = document.getElementById('calendarGrid');
-      ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(day => {
-        const el = document.createElement('div');
-        el.className = 'day-name';
-        el.textContent = day;
-        grid.appendChild(el);
-      });
-
-      for (let i = 0; i < firstDay; i++) {
-        const blank = document.createElement('button');
-        blank.className = 'calendar-day empty';
-        blank.type = 'button';
-        grid.appendChild(blank);
-      }
-
-      for (let day = 1; day <= daysInMonth; day++) {
-        const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-        const button = document.createElement('button');
-        const hasSlots = !!slotsByDate[dateString];
-        button.type = 'button';
-        button.className = `calendar-day ${hasSlots ? 'has-slots' : 'no-slots'} ${selectedDate === dateString ? 'selected' : ''}`;
-        button.innerHTML = `<span>${day}</span>`;
-        button.disabled = !hasSlots;
-        button.addEventListener('click', () => { selectedDate = dateString; renderCalendar(); renderTimes(dateString, slotsByDate[dateString]); });
-        grid.appendChild(button);
-      }
-
-      if (selectedDate && selectedDate.startsWith(`${year}-${String(month + 1).padStart(2, '0')}`)) {
-        renderTimes(selectedDate, slotsByDate[selectedDate] || []);
-      }
-    }
-
-    function renderTimes(dateString, slots) {
-      const panel = document.getElementById('timePanel');
-      panel.innerHTML = `<h4>${prettyDate(dateString)}</h4><div class="time-buttons"></div><div class="selected-time" id="selectedTimeText"></div>`;
-      const timeButtons = panel.querySelector('.time-buttons');
-      slots.forEach(slot => {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'time-slot';
-        button.textContent = `${slot.time} • ${slot.note}`;
-        button.addEventListener('click', () => {
-          document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
-          button.classList.add('selected');
-          selectedSlotInput.value = `${prettyDate(slot.date)} at ${slot.time} - ${slot.note}`;
-          document.getElementById('selectedTimeText').textContent = `Selected: ${selectedSlotInput.value}`;
-        });
-        timeButtons.appendChild(button);
-      });
-    }
-
-    renderCalendar();
-
-    document.getElementById('bookingForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const biteHistory = document.getElementById('biteHistory').value;
-      const humanAggression = document.getElementById('humanAggression').value;
-
-      if (biteHistory === 'Yes' || humanAggression === 'Yes') {
-        alert('For safety, Escalante Dog Training does not accept dogs with human aggression or bite history. Please do not submit this request.');
-        return;
-      }
-
-      const form = e.target;
-      const data = new FormData(form);
-      const subject = encodeURIComponent('Dog Training Request - ' + data.get('dogName'));
-      const body = encodeURIComponent(
-`Hi Nicole,
-
-I would like to request a dog training session.
-
-Selected time: ${data.get('selectedSlot') || 'No time selected'}
-Service interested in: ${data.get('service')}
-
-Owner information:
-Name: ${data.get('ownerName')}
-Phone: ${data.get('phone')}
-Email: ${data.get('email')}
-
-Dog information:
-Dog's name: ${data.get('dogName')}
-Age: ${data.get('dogAge')}
-Breed: ${data.get('breed')}
-Sex: ${data.get('sex')}
-Spayed/Neutered: ${data.get('fixed')}
-Bite history: ${data.get('biteHistory')}
-Human aggression: ${data.get('humanAggression')}
-Dog aggression/reactivity details: ${data.get('dogAggression')}
-
-Main problems I am having:
-${data.get('problems')}
-
-I understand Escalante Dog Training uses balanced training methods, including prong collars, and is not a positive-only training program.
-
-Thank you!`
-      );
-
-      window.location.href = `mailto:escalantedogtraining@gmail.com?subject=${subject}&body=${body}`;
-    });
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script src="assets/js/script.js"></script>
 </body>
 </html>
