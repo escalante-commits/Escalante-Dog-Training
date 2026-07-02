@@ -1,12 +1,12 @@
 # Escalante Dog Training Website
 
-Upload everything in this folder to your GitHub repository root.
+GitHub Pages-ready multi-page static website.
 
-Required structure:
+## Upload
+Upload `index.html`, all other `.html` pages, and the entire `assets` folder to your repository root.
 
-- index.html
-- assets/css/style.css
-- assets/js/script.js
-- assets/images/logo.png
+## Replace photos
+Replace files in `assets/images/` with your real photos using the same filenames.
 
-To update available calendar times, edit `assets/js/script.js` and change the `availability` object.
+## Custom domain
+Use GitHub Pages settings with `escalantedogtraining.com`.
