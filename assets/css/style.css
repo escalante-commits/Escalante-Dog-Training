@@ -2,4 +2,290 @@
 
 
 /* Requested refinements */
-.brand img{width:68px;height:68px;border-radius:16px}.nav{min-height:92px}.links{font-size:15px}.brand small,.eyebrow,.breadcrumb{color:var(--neon);text-shadow:0 2px 8px rgba(0,0,0,.85),0 0 1px #061000}.eyebrow,.breadcrumb{display:inline-flex;background:rgba(8,13,18,.84);border:1px solid rgba(200,255,0,.28);border-radius:999px;padding:7px 12px}.section:not(.dark) .eyebrow,.section:not(.dark) .breadcrumb{background:var(--slate2);color:var(--neon)}.hero-logo{width:min(210px,48vw);margin:0 0 18px;filter:drop-shadow(0 20px 34px rgba(0,0,0,.45))}.hero-card .tag{background:var(--neon);color:#111820;border-color:var(--neon);text-shadow:none}.home-about p{font-size:18px}.price{display:inline-flex;align-items:center;background:var(--slate2);color:var(--neon);border:2px solid var(--neon);border-radius:999px;padding:6px 14px;font-size:30px;line-height:1;margin:6px 0 12px;text-shadow:0 1px 3px rgba(0,0,0,.75)}.section.dark .price{background:#080d12;color:var(--neon);border-color:var(--neon)}.service-group{margin-top:34px}.service-group + .service-group{margin-top:60px;padding-top:44px;border-top:1px solid var(--line)}.section.dark .service-group + .service-group{border-top-color:rgba(255,255,255,.15)}.care-intro{background:linear-gradient(135deg,#101820,#24303a);color:white;border-left:6px solid var(--neon);border-radius:22px;padding:24px;margin:24px 0}.care-intro p{color:#dfe9ed}.mini-note{font-size:14px;color:var(--muted)}.section.dark .mini-note{color:#cbd7dd}.calendar-shell{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 12px 34px rgba(20,30,40,.08)}.calendar-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.calendar-head h2{margin:0}.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.cal-dayname{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:900;text-align:center}.cal-date{min-height:54px;border:1px solid #d7e1e7;border-radius:14px;background:#f8fbfc;font-weight:900;cursor:pointer;color:#111820}.cal-date:hover,.cal-date.active{background:var(--neon);border-color:var(--neon);box-shadow:0 8px 18px rgba(200,255,0,.25)}.cal-date.disabled{opacity:.35;cursor:not-allowed;background:#eef3f5}.time-panel{margin-top:18px;background:#f4f8fa;border:1px solid #dbe5ea;border-radius:18px;padding:16px}.time-panel h3{margin:0 0 12px}.slots{grid-template-columns:repeat(2,1fr)}@media(max-width:880px){.brand img{width:56px;height:56px}.nav{min-height:84px}.links{top:84px}.hero-logo{width:160px}.cal-date{min-height:48px}.slots{grid-template-columns:1fr 1fr}}@media(max-width:520px){.brand{gap:8px}.brand img{width:50px;height:50px}.brand span{font-size:11px}.brand small{font-size:9px}.cal-grid{gap:5px}.cal-date{min-height:42px;border-radius:11px}.slots{grid-template-columns:1fr}.price{font-size:25px}}
+
+.brand img{
+    width:68px;
+    height:68px;
+    border-radius:16px;
+}
+
+.nav{
+    min-height:92px;
+}
+
+.links{
+    font-size:15px;
+}
+
+/* Make all neon text readable */
+.brand small,
+.eyebrow,
+.breadcrumb{
+    color:var(--neon);
+    text-shadow:0 2px 8px rgba(0,0,0,.85),0 0 1px #061000;
+}
+
+.eyebrow,
+.breadcrumb{
+    display:inline-flex;
+    background:rgba(8,13,18,.84);
+    border:1px solid rgba(200,255,0,.28);
+    border-radius:999px;
+    padding:7px 12px;
+}
+
+.section:not(.dark) .eyebrow,
+.section:not(.dark) .breadcrumb{
+    background:var(--slate2);
+    color:var(--neon);
+}
+
+/* MUCH larger homepage logo */
+.hero-logo{
+    width:min(300px,60vw);
+    margin:0 0 26px;
+    filter:drop-shadow(0 20px 34px rgba(0,0,0,.45));
+}
+
+/* More breathing room below hero buttons */
+.hero-actions{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:30px;
+    margin-bottom:90px;
+}
+
+.hero-card .tag{
+    background:var(--neon);
+    color:#111820;
+    border-color:var(--neon);
+}
+
+.home-about p{
+    font-size:18px;
+}
+
+/* SERVICE CARDS */
+
+.card h3{
+    font-size:25px;
+    margin:0 0 10px;
+    color:var(--slate2);
+    font-weight:900;
+}
+
+.card p{
+    color:#4d5a64;
+    font-size:16px;
+    line-height:1.6;
+}
+
+.price{
+    display:inline-flex;
+    align-items:center;
+    background:var(--slate2);
+    color:var(--neon);
+    border:2px solid var(--neon);
+    border-radius:999px;
+    padding:6px 14px;
+    font-size:30px;
+    line-height:1;
+    margin:8px 0 14px;
+    text-shadow:0 1px 3px rgba(0,0,0,.75);
+}
+
+.section.dark .price{
+    background:#080d12;
+    color:var(--neon);
+    border-color:var(--neon);
+}
+
+/* Separate daycare & boarding */
+
+.service-group{
+    margin-top:40px;
+}
+
+.service-group + .service-group{
+    margin-top:70px;
+    padding-top:50px;
+    border-top:1px solid var(--line);
+}
+
+.section.dark .service-group + .service-group{
+    border-top-color:rgba(255,255,255,.15);
+}
+
+.care-intro{
+    background:linear-gradient(135deg,#101820,#24303a);
+    color:white;
+    border-left:6px solid var(--neon);
+    border-radius:22px;
+    padding:24px;
+    margin:30px 0;
+}
+
+.care-intro p{
+    color:#dfe9ed;
+}
+
+.mini-note{
+    font-size:14px;
+    color:var(--muted);
+}
+
+.section.dark .mini-note{
+    color:#cbd7dd;
+}
+
+/* Calendar */
+
+.calendar-shell{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px;
+    box-shadow:0 12px 34px rgba(20,30,40,.08);
+}
+
+.calendar-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:14px;
+}
+
+.calendar-head h2{
+    margin:0;
+}
+
+.cal-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:8px;
+}
+
+.cal-dayname{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+    font-weight:900;
+    text-align:center;
+}
+
+.cal-date{
+    min-height:54px;
+    border:1px solid #d7e1e7;
+    border-radius:14px;
+    background:#f8fbfc;
+    font-weight:900;
+    cursor:pointer;
+    color:#111820;
+}
+
+.cal-date:hover,
+.cal-date.active{
+    background:var(--neon);
+    border-color:var(--neon);
+    box-shadow:0 8px 18px rgba(200,255,0,.25);
+}
+
+.cal-date.disabled{
+    opacity:.35;
+    cursor:not-allowed;
+    background:#eef3f5;
+}
+
+.time-panel{
+    margin-top:18px;
+    background:#f4f8fa;
+    border:1px solid #dbe5ea;
+    border-radius:18px;
+    padding:16px;
+}
+
+.time-panel h3{
+    margin:0 0 12px;
+}
+
+.slots{
+    grid-template-columns:repeat(2,1fr);
+}
+
+@media(max-width:880px){
+
+    .brand img{
+        width:56px;
+        height:56px;
+    }
+
+    .nav{
+        min-height:84px;
+    }
+
+    .links{
+        top:84px;
+    }
+
+    .hero-logo{
+        width:220px;
+    }
+
+    .hero-actions{
+        margin-bottom:50px;
+    }
+
+    .cal-date{
+        min-height:48px;
+    }
+
+    .slots{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:520px){
+
+    .brand{
+        gap:8px;
+    }
+
+    .brand img{
+        width:50px;
+        height:50px;
+    }
+
+    .brand span{
+        font-size:11px;
+    }
+
+    .brand small{
+        font-size:9px;
+    }
+
+    .hero-logo{
+        width:170px;
+    }
+
+    .cal-grid{
+        gap:5px;
+    }
+
+    .cal-date{
+        min-height:42px;
+        border-radius:11px;
+    }
+
+    .slots{
+        grid-template-columns:1fr;
+    }
+
+    .price{
+        font-size:25px;
+    }
+
+}
