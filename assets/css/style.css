@@ -1245,4 +1245,25 @@ textarea:focus-visible {
   .cta-panel .btn {
     width: 100%;
   }
+
+   
+   /* Improve readability of service descriptions */
+   .home-service > p:not(.price),
+   .service-card > p,
+   .service-card ul.clean,
+   .service-card ul.clean li {
+     color: #111111 !important;
+   }
+   
+   /* Keep service descriptions dark on light cards */
+   .home-service,
+   .service-card {
+     color: #111111;
+   }
+   
+   .home-service h3,
+   .service-card h3 {
+     color: #111111;
+   }
+
 }
