@@ -1,4 +1,5 @@
 
+/* Mobile navigation */
 const menu = document.querySelector('.menu');
 const links = document.querySelector('.links');
 
@@ -9,12 +10,14 @@ if (menu && links) {
   });
 }
 
+/* Date helpers */
 function keyFor(date) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }
 
 function prettyDate(key) {
   const [year, month, day] = key.split('-').map(Number);
+
   return new Date(year, month - 1, day).toLocaleDateString('en-US', {
     weekday: 'long',
     month: 'long',
@@ -23,10 +26,18 @@ function prettyDate(key) {
   });
 }
 
-// Block the current week and all dates less than 7 days from today.
+function startOfToday() {
+  const date = new Date();
+  date.setHours(0, 0, 0, 0);
+  return date;
+}
+
+/*
+ * Block the current calendar week (Sunday–Saturday) and
+ * require at least seven full calendar days' notice.
+ */
 function earliestBookingDate() {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const today = startOfToday();
 
   const sevenDaysAhead = new Date(today);
   sevenDaysAhead.setDate(today.getDate() + 7);
@@ -38,7 +49,13 @@ function earliestBookingDate() {
   return sevenDaysAhead > nextMonday ? sevenDaysAhead : nextMonday;
 }
 
-// Appointment start times.
+function isBookableDate(date) {
+  const candidate = new Date(date);
+  candidate.setHours(0, 0, 0, 0);
+  return candidate >= earliestBookingDate();
+}
+
+/* Available appointment start times */
 function getAvailableTimes(date) {
   const day = date.getDay();
 
@@ -49,6 +66,7 @@ function getAvailableTimes(date) {
   return ['7:00 AM', '8:00 AM', '9:00 AM', '5:00 PM', '6:00 PM', '7:00 PM'];
 }
 
+/* Dynamic booking calendar */
 function buildCalendar() {
   const calendar = document.querySelector('#bookingCalendar');
   const timeSlots = document.querySelector('#timeSlots');
@@ -58,10 +76,18 @@ function buildCalendar() {
   const previousButton = document.querySelector('#prevMonth');
   const nextButton = document.querySelector('#nextMonth');
 
-  if (!calendar || !timeSlots || !selectedDateLabel || !monthLabel) return;
+  if (
+    !calendar ||
+    !timeSlots ||
+    !selectedDateLabel ||
+    !monthLabel ||
+    !previousButton ||
+    !nextButton
+  ) {
+    return;
+  }
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const today = startOfToday();
 
   let year = today.getFullYear();
   let month = today.getMonth();
@@ -73,16 +99,20 @@ function buildCalendar() {
   function renderCalendar() {
     const firstDay = new Date(year, month, 1);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    const earliest = earliestBookingDate();
 
     monthLabel.textContent = firstDay.toLocaleDateString('en-US', {
       month: 'long',
       year: 'numeric'
     });
 
-    calendar.innerHTML = dayNames
-      .map(day => `<div class="cal-dayname">${day}</div>`)
-      .join('');
+    calendar.innerHTML = '';
+
+    dayNames.forEach(day => {
+      const heading = document.createElement('div');
+      heading.className = 'cal-dayname';
+      heading.textContent = day;
+      calendar.appendChild(heading);
+    });
 
     for (let i = 0; i < firstDay.getDay(); i++) {
       const empty = document.createElement('div');
@@ -94,25 +124,28 @@ function buildCalendar() {
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(year, month, day);
       const dateKey = keyFor(date);
-      const available = date >= earliest;
+      const available = isBookableDate(date);
 
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'cal-date';
-      button.textContent = day;
+      button.textContent = String(day);
       button.disabled = !available;
       button.setAttribute(
         'aria-label',
-        prettyDate(dateKey) + (available ? ', available to request' : ', unavailable')
+        `${prettyDate(dateKey)}${available ? ', available to request' : ', unavailable'}`
+      );
+      button.setAttribute(
+        'aria-pressed',
+        String(selectedDate === dateKey)
       );
 
-      if (!available) button.classList.add('disabled');
+      if (!available) {
+        button.classList.add('disabled');
+      }
 
       if (selectedDate === dateKey) {
         button.classList.add('active');
-        button.setAttribute('aria-pressed', 'true');
-      } else {
-        button.setAttribute('aria-pressed', 'false');
       }
 
       if (available) {
@@ -122,21 +155,45 @@ function buildCalendar() {
       calendar.appendChild(button);
     }
 
-    previousButton.disabled =
-      year === today.getFullYear() && month <= today.getMonth();
+    const currentMonthIsDisplayed =
+      year === today.getFullYear() && month === today.getMonth();
+
+    previousButton.disabled = currentMonthIsDisplayed;
+
+    previousButton.setAttribute(
+      'aria-label',
+      'Previous month'
+    );
+
+    nextButton.disabled = false;
   }
 
   function chooseDate(dateKey) {
+    const [selectedYear, selectedMonth, selectedDay] = dateKey.split('-').map(Number);
+    const date = new Date(selectedYear, selectedMonth - 1, selectedDay);
+
+    // Recheck availability in case the page has remained open for a long time.
+    if (!isBookableDate(date)) {
+      selectedDate = null;
+      selectedTime = null;
+
+      if (preferredField) preferredField.value = '';
+
+      selectedDateLabel.textContent = 'Select an available date to see times';
+      timeSlots.innerHTML = '';
+      renderCalendar();
+      return;
+    }
+
     selectedDate = dateKey;
     selectedTime = null;
 
     selectedDateLabel.textContent = prettyDate(dateKey);
     timeSlots.innerHTML = '';
 
-    if (preferredField) preferredField.value = '';
-
-    const [selectedYear, selectedMonth, selectedDay] = dateKey.split('-').map(Number);
-    const date = new Date(selectedYear, selectedMonth - 1, selectedDay);
+    if (preferredField) {
+      preferredField.value = '';
+    }
 
     getAvailableTimes(date).forEach(time => {
       const button = document.createElement('button');
@@ -146,6 +203,18 @@ function buildCalendar() {
       button.setAttribute('aria-pressed', 'false');
 
       button.addEventListener('click', () => {
+        // Check the date again before selecting a time.
+        if (!isBookableDate(date)) {
+          alert('That date is no longer available to request. Please choose another date.');
+          selectedDate = null;
+          selectedTime = null;
+          if (preferredField) preferredField.value = '';
+          timeSlots.innerHTML = '';
+          selectedDateLabel.textContent = 'Select an available date to see times';
+          renderCalendar();
+          return;
+        }
+
         selectedTime = time;
 
         timeSlots.querySelectorAll('.slot').forEach(slot => {
@@ -196,7 +265,7 @@ function buildCalendar() {
 
 buildCalendar();
 
-// Enforce new-client and existing-client service rules.
+/* New-client and existing-client service rules */
 const clientStatus = document.querySelector('#clientStatus');
 const serviceRequested = document.querySelector('#serviceRequested');
 const serviceRule = document.querySelector('#serviceRule');
@@ -208,6 +277,7 @@ function applyClientRules() {
   const isExistingClient = clientStatus.value.startsWith('Yes');
 
   const evaluation = 'Free 20-minute consultation/evaluation';
+
   const careServices = [
     'Daycare - Existing Clients Only',
     'Boarding - Existing Clients Only'
@@ -257,7 +327,7 @@ if (serviceRequested) {
 
 applyClientRules();
 
-// Open an email draft with the completed request.
+/* Email request form */
 const bookingForm = document.querySelector('#bookingForm');
 
 if (bookingForm) {
@@ -268,8 +338,30 @@ if (bookingForm) {
 
     const preferredField = document.querySelector('#preferred');
 
-    if (!preferredField || !preferredField.value) {
-      alert('Please select an available date and time from the calendar.');
+    if (!preferredField || !preferredField.value || !selectedAppointmentIsValid()) {
+      alert('Please select a currently available date and time from the calendar.');
+      return;
+    }
+
+    // Verify the service selection against the current client status.
+    applyClientRules();
+
+    const isNewClient = clientStatus && clientStatus.value.startsWith('No');
+    const isExistingClient = clientStatus && clientStatus.value.startsWith('Yes');
+    const requestedService = serviceRequested ? serviceRequested.value : '';
+
+    if (isNewClient && requestedService !== 'Free 20-minute consultation/evaluation') {
+      alert('New clients must request the free evaluation first.');
+      return;
+    }
+
+    const careServices = [
+      'Daycare - Existing Clients Only',
+      'Boarding - Existing Clients Only'
+    ];
+
+    if (careServices.includes(requestedService) && !isExistingClient) {
+      alert('Daycare and boarding are available only to existing training clients.');
       return;
     }
 
@@ -285,4 +377,50 @@ if (bookingForm) {
 
     window.location.href = mailto;
   });
+}
+
+/*
+ * Confirm the selected date and time are still valid.
+ * The selected time must be one of the published slots for that date.
+ */
+function selectedAppointmentIsValid() {
+  const preferredField = document.querySelector('#preferred');
+
+  if (!preferredField || !preferredField.value) return false;
+
+  const match = preferredField.value.match(
+    /^(.+) at (.+)$/
+  );
+
+  if (!match) return false;
+
+  const dateKey = selectedDateForValidation(preferredField.value);
+
+  if (!dateKey) return false;
+
+  const [year, month, day] = dateKey.split('-').map(Number);
+  const date = new Date(year, month - 1, day);
+
+  if (!isBookableDate(date)) return false;
+
+  const time = match[2];
+
+  return getAvailableTimes(date).includes(time);
+}
+
+function selectedDateForValidation(value) {
+  const preferredField = document.querySelector('#preferred');
+
+  if (!preferredField || !value) return null;
+
+  // The calendar-generated field must match the date/time selected in this page.
+  if (typeof selectedDate === 'undefined' || !selectedDate || !selectedTime) {
+    return null;
+  }
+
+  if (value !== `${prettyDate(selectedDate)} at ${selectedTime}`) {
+    return null;
+  }
+
+  return selectedDate;
 }
