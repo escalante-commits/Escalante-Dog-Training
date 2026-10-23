@@ -1,5 +1,8 @@
 
-/* Mobile navigation */
+/* =========================================
+   MOBILE NAVIGATION
+========================================= */
+
 const menu = document.querySelector('.menu');
 const links = document.querySelector('.links');
 
@@ -10,7 +13,11 @@ if (menu && links) {
   });
 }
 
-/* Date helpers */
+
+/* =========================================
+   DATE HELPERS
+========================================= */
+
 function keyFor(date) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }
@@ -33,9 +40,9 @@ function startOfToday() {
 }
 
 /*
- * Block the current calendar week (Sunday–Saturday) and
- * require at least seven full calendar days' notice.
- */
+  Block the current week and require at least seven
+  days' notice. The current week is Sunday–Saturday.
+*/
 function earliestBookingDate() {
   const today = startOfToday();
 
@@ -46,27 +53,57 @@ function earliestBookingDate() {
   const daysUntilMonday = (8 - today.getDay()) % 7 || 7;
   nextMonday.setDate(today.getDate() + daysUntilMonday);
 
-  return sevenDaysAhead > nextMonday ? sevenDaysAhead : nextMonday;
+  return sevenDaysAhead > nextMonday
+    ? sevenDaysAhead
+    : nextMonday;
 }
 
 function isBookableDate(date) {
   const candidate = new Date(date);
   candidate.setHours(0, 0, 0, 0);
+
   return candidate >= earliestBookingDate();
 }
 
-/* Available appointment start times */
+
+/* =========================================
+   AVAILABLE APPOINTMENT TIMES
+========================================= */
+
 function getAvailableTimes(date) {
   const day = date.getDay();
 
+  // Saturday and Sunday: 8 AM–12 PM
   if (day === 0 || day === 6) {
-    return ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM'];
+    return [
+      '8:00 AM',
+      '9:00 AM',
+      '10:00 AM',
+      '11:00 AM',
+      '12:00 PM'
+    ];
   }
 
-  return ['7:00 AM', '8:00 AM', '9:00 AM', '5:00 PM', '6:00 PM', '7:00 PM'];
+  // Monday–Friday: 7–9 AM and 5–7 PM
+  return [
+    '7:00 AM',
+    '8:00 AM',
+    '9:00 AM',
+    '5:00 PM',
+    '6:00 PM',
+    '7:00 PM'
+  ];
 }
 
-/* Dynamic booking calendar */
+
+/* =========================================
+   BOOKING CALENDAR
+========================================= */
+
+// Keep the selected appointment accessible to form validation.
+let selectedBookingDate = null;
+let selectedBookingTime = null;
+
 function buildCalendar() {
   const calendar = document.querySelector('#bookingCalendar');
   const timeSlots = document.querySelector('#timeSlots');
@@ -76,10 +113,12 @@ function buildCalendar() {
   const previousButton = document.querySelector('#prevMonth');
   const nextButton = document.querySelector('#nextMonth');
 
+  // This script is also loaded on pages without a calendar.
   if (
     !calendar ||
     !timeSlots ||
     !selectedDateLabel ||
+    !preferredField ||
     !monthLabel ||
     !previousButton ||
     !nextButton
@@ -91,8 +130,6 @@ function buildCalendar() {
 
   let year = today.getFullYear();
   let month = today.getMonth();
-  let selectedDate = null;
-  let selectedTime = null;
 
   const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -114,6 +151,7 @@ function buildCalendar() {
       calendar.appendChild(heading);
     });
 
+    // Empty cells before the first day of the month.
     for (let i = 0; i < firstDay.getDay(); i++) {
       const empty = document.createElement('div');
       empty.className = 'cal-date calendar-empty';
@@ -131,69 +169,62 @@ function buildCalendar() {
       button.className = 'cal-date';
       button.textContent = String(day);
       button.disabled = !available;
+
       button.setAttribute(
         'aria-label',
         `${prettyDate(dateKey)}${available ? ', available to request' : ', unavailable'}`
       );
+
       button.setAttribute(
         'aria-pressed',
-        String(selectedDate === dateKey)
+        String(selectedBookingDate === dateKey)
       );
 
       if (!available) {
         button.classList.add('disabled');
       }
 
-      if (selectedDate === dateKey) {
+      if (selectedBookingDate === dateKey) {
         button.classList.add('active');
       }
 
       if (available) {
-        button.addEventListener('click', () => chooseDate(dateKey));
+        button.addEventListener('click', () => {
+          chooseDate(dateKey);
+        });
       }
 
       calendar.appendChild(button);
     }
 
-    const currentMonthIsDisplayed =
-      year === today.getFullYear() && month === today.getMonth();
-
-    previousButton.disabled = currentMonthIsDisplayed;
-
-    previousButton.setAttribute(
-      'aria-label',
-      'Previous month'
-    );
-
-    nextButton.disabled = false;
+    // Do not allow navigation to a month before the current month.
+    previousButton.disabled =
+      year === today.getFullYear() && month <= today.getMonth();
   }
 
   function chooseDate(dateKey) {
-    const [selectedYear, selectedMonth, selectedDay] = dateKey.split('-').map(Number);
-    const date = new Date(selectedYear, selectedMonth - 1, selectedDay);
+    const [selectedYear, selectedMonth, selectedDay] =
+      dateKey.split('-').map(Number);
 
-    // Recheck availability in case the page has remained open for a long time.
+    const date = new Date(
+      selectedYear,
+      selectedMonth - 1,
+      selectedDay
+    );
+
+    // Recheck the date when it is selected.
     if (!isBookableDate(date)) {
-      selectedDate = null;
-      selectedTime = null;
-
-      if (preferredField) preferredField.value = '';
-
-      selectedDateLabel.textContent = 'Select an available date to see times';
-      timeSlots.innerHTML = '';
+      clearAppointment();
       renderCalendar();
       return;
     }
 
-    selectedDate = dateKey;
-    selectedTime = null;
+    selectedBookingDate = dateKey;
+    selectedBookingTime = null;
 
     selectedDateLabel.textContent = prettyDate(dateKey);
     timeSlots.innerHTML = '';
-
-    if (preferredField) {
-      preferredField.value = '';
-    }
+    preferredField.value = '';
 
     getAvailableTimes(date).forEach(time => {
       const button = document.createElement('button');
@@ -203,19 +234,15 @@ function buildCalendar() {
       button.setAttribute('aria-pressed', 'false');
 
       button.addEventListener('click', () => {
-        // Check the date again before selecting a time.
+        // Recheck availability in case the page has been left open.
         if (!isBookableDate(date)) {
           alert('That date is no longer available to request. Please choose another date.');
-          selectedDate = null;
-          selectedTime = null;
-          if (preferredField) preferredField.value = '';
-          timeSlots.innerHTML = '';
-          selectedDateLabel.textContent = 'Select an available date to see times';
+          clearAppointment();
           renderCalendar();
           return;
         }
 
-        selectedTime = time;
+        selectedBookingTime = time;
 
         timeSlots.querySelectorAll('.slot').forEach(slot => {
           slot.classList.remove('active');
@@ -225,15 +252,23 @@ function buildCalendar() {
         button.classList.add('active');
         button.setAttribute('aria-pressed', 'true');
 
-        if (preferredField) {
-          preferredField.value = `${prettyDate(selectedDate)} at ${selectedTime}`;
-        }
+        preferredField.value =
+          `${prettyDate(selectedBookingDate)} at ${selectedBookingTime}`;
       });
 
       timeSlots.appendChild(button);
     });
 
     renderCalendar();
+  }
+
+  function clearAppointment() {
+    selectedBookingDate = null;
+    selectedBookingTime = null;
+
+    preferredField.value = '';
+    timeSlots.innerHTML = '';
+    selectedDateLabel.textContent = 'Select an available date to see times';
   }
 
   previousButton.addEventListener('click', () => {
@@ -265,10 +300,22 @@ function buildCalendar() {
 
 buildCalendar();
 
-/* New-client and existing-client service rules */
+
+/* =========================================
+   CLIENT AND SERVICE RESTRICTIONS
+========================================= */
+
 const clientStatus = document.querySelector('#clientStatus');
 const serviceRequested = document.querySelector('#serviceRequested');
 const serviceRule = document.querySelector('#serviceRule');
+
+const EVALUATION_SERVICE =
+  'Free 20-minute consultation/evaluation';
+
+const CARE_SERVICES = [
+  'Daycare - Existing Clients Only',
+  'Boarding - Existing Clients Only'
+];
 
 function applyClientRules() {
   if (!clientStatus || !serviceRequested) return;
@@ -276,39 +323,39 @@ function applyClientRules() {
   const isNewClient = clientStatus.value.startsWith('No');
   const isExistingClient = clientStatus.value.startsWith('Yes');
 
-  const evaluation = 'Free 20-minute consultation/evaluation';
-
-  const careServices = [
-    'Daycare - Existing Clients Only',
-    'Boarding - Existing Clients Only'
-  ];
-
   Array.from(serviceRequested.options).forEach(option => {
     option.disabled = false;
 
-    if (isNewClient && option.value !== evaluation) {
+    // New clients must request the free evaluation first.
+    if (isNewClient && option.value !== EVALUATION_SERVICE) {
       option.disabled = true;
     }
 
-    if (careServices.includes(option.value) && !isExistingClient) {
+    // Daycare and boarding are only for existing training clients.
+    if (CARE_SERVICES.includes(option.value) && !isExistingClient) {
       option.disabled = true;
     }
   });
 
   if (isNewClient) {
-    serviceRequested.value = evaluation;
+    serviceRequested.value = EVALUATION_SERVICE;
 
     if (serviceRule) {
       serviceRule.textContent =
         'New clients must start with the free 20-minute consultation/evaluation. Other services can be discussed during that appointment.';
     }
   } else if (isExistingClient) {
-    if (serviceRule) {
-      serviceRule.textContent =
-        'Existing training clients may request eligible services directly. Daycare and boarding are care services, not training sessions.';
+    if (
+      CARE_SERVICES.includes(serviceRequested.value) ||
+      serviceRequested.value
+    ) {
+      if (serviceRule) {
+        serviceRule.textContent =
+          'Existing training clients may request eligible services directly. Daycare and boarding are care services, not training sessions.';
+      }
     }
   } else {
-    serviceRequested.value = evaluation;
+    serviceRequested.value = EVALUATION_SERVICE;
 
     if (serviceRule) {
       serviceRule.textContent =
@@ -327,7 +374,45 @@ if (serviceRequested) {
 
 applyClientRules();
 
-/* Email request form */
+
+/* =========================================
+   APPOINTMENT VALIDATION
+========================================= */
+
+function selectedAppointmentIsValid() {
+  const preferredField = document.querySelector('#preferred');
+
+  if (
+    !preferredField ||
+    !preferredField.value ||
+    !selectedBookingDate ||
+    !selectedBookingTime
+  ) {
+    return false;
+  }
+
+  const [year, month, day] =
+    selectedBookingDate.split('-').map(Number);
+
+  const date = new Date(year, month - 1, day);
+
+  if (!isBookableDate(date)) return false;
+
+  if (!getAvailableTimes(date).includes(selectedBookingTime)) {
+    return false;
+  }
+
+  const expectedValue =
+    `${prettyDate(selectedBookingDate)} at ${selectedBookingTime}`;
+
+  return preferredField.value === expectedValue;
+}
+
+
+/* =========================================
+   EMAIL REQUEST FORM
+========================================= */
+
 const bookingForm = document.querySelector('#bookingForm');
 
 if (bookingForm) {
@@ -336,37 +421,46 @@ if (bookingForm) {
 
     if (!bookingForm.reportValidity()) return;
 
-    const preferredField = document.querySelector('#preferred');
-
-    if (!preferredField || !preferredField.value || !selectedAppointmentIsValid()) {
-      alert('Please select a currently available date and time from the calendar.');
+    if (!selectedAppointmentIsValid()) {
+      alert('Please select an available date and time from the calendar.');
       return;
     }
 
-    // Verify the service selection against the current client status.
-    applyClientRules();
+    const isNewClient =
+      clientStatus && clientStatus.value.startsWith('No');
 
-    const isNewClient = clientStatus && clientStatus.value.startsWith('No');
-    const isExistingClient = clientStatus && clientStatus.value.startsWith('Yes');
-    const requestedService = serviceRequested ? serviceRequested.value : '';
+    const isExistingClient =
+      clientStatus && clientStatus.value.startsWith('Yes');
 
-    if (isNewClient && requestedService !== 'Free 20-minute consultation/evaluation') {
+    const requestedService =
+      serviceRequested ? serviceRequested.value : '';
+
+    if (!clientStatus || (!isNewClient && !isExistingClient)) {
+      alert('Please indicate whether you are a new or existing training client.');
+      return;
+    }
+
+    if (
+      isNewClient &&
+      requestedService !== EVALUATION_SERVICE
+    ) {
       alert('New clients must request the free evaluation first.');
       return;
     }
 
-    const careServices = [
-      'Daycare - Existing Clients Only',
-      'Boarding - Existing Clients Only'
-    ];
-
-    if (careServices.includes(requestedService) && !isExistingClient) {
+    if (
+      CARE_SERVICES.includes(requestedService) &&
+      !isExistingClient
+    ) {
       alert('Daycare and boarding are available only to existing training clients.');
       return;
     }
 
     const formData = new FormData(bookingForm);
-    const subject = encodeURIComponent('Training Request - Escalante Dog Training');
+
+    const subject = encodeURIComponent(
+      'Training Request - Escalante Dog Training'
+    );
 
     const body = Array.from(formData.entries())
       .map(([label, value]) => `${label}: ${value}`)
@@ -375,52 +469,7 @@ if (bookingForm) {
     const mailto =
       `mailto:escalantedogtraining@gmail.com?subject=${subject}&body=${encodeURIComponent(body)}`;
 
+    // Opens the visitor's configured email app; does not send automatically.
     window.location.href = mailto;
   });
-}
-
-/*
- * Confirm the selected date and time are still valid.
- * The selected time must be one of the published slots for that date.
- */
-function selectedAppointmentIsValid() {
-  const preferredField = document.querySelector('#preferred');
-
-  if (!preferredField || !preferredField.value) return false;
-
-  const match = preferredField.value.match(
-    /^(.+) at (.+)$/
-  );
-
-  if (!match) return false;
-
-  const dateKey = selectedDateForValidation(preferredField.value);
-
-  if (!dateKey) return false;
-
-  const [year, month, day] = dateKey.split('-').map(Number);
-  const date = new Date(year, month - 1, day);
-
-  if (!isBookableDate(date)) return false;
-
-  const time = match[2];
-
-  return getAvailableTimes(date).includes(time);
-}
-
-function selectedDateForValidation(value) {
-  const preferredField = document.querySelector('#preferred');
-
-  if (!preferredField || !value) return null;
-
-  // The calendar-generated field must match the date/time selected in this page.
-  if (typeof selectedDate === 'undefined' || !selectedDate || !selectedTime) {
-    return null;
-  }
-
-  if (value !== `${prettyDate(selectedDate)} at ${selectedTime}`) {
-    return null;
-  }
-
-  return selectedDate;
 }
