@@ -1,46 +1,399 @@
 
-  <!-- SERVICES -->
-  <section class="section dark">
-    <div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Escalante Dog Training offers balanced, personalized dog training in Winchester, Temecula Valley, and surrounding communities.">
+  <meta name="theme-color" content="#292d32">
 
-      <div class="section-title">
-        <span class="eyebrow">Services</span>
-        <h2>Clear Programs for Real-Life Results.</h2>
-        <p>Every new client begins with a free 20-minute consultation and evaluation to discuss goals and determine the best next step.</p>
-      </div>
+  <title>Escalante Dog Training | Winchester & Temecula Valley</title>
 
-      <div class="grid grid-3 home-service-grid">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
 
-        <article class="card pad home-service">
-          <h3>Private Lessons</h3>
-          <p class="price">$100</p>
-          <p>One-on-one coaching for obedience, leash manners, and everyday behavior.</p>
-          <a class="btn dark" href="services.html#private">Learn More</a>
-        </article>
+<body>
 
-        <article class="card pad home-service">
-          <h3>Board &amp; Train</h3>
-          <p class="price">$1,000+</p>
-          <p>An immersive training program with structured practice and guidance for continuing at home.</p>
-          <a class="btn dark" href="services.html#board-train">Learn More</a>
-        </article>
+  <!-- HEADER / NAVIGATION -->
+  <header class="site-header">
+    <div class="container nav-container">
 
-        <article class="card pad home-service">
-          <h3>Daycare / Boarding</h3>
-          <p class="price">$40 / $50</p>
-          <p>Daycare is $40 per day and boarding is $50 per night. Available to existing training clients only.</p>
-          <a class="btn dark" href="services.html#care">Learn More</a>
-        </article>
+      <a href="index.html" class="logo" aria-label="Escalante Dog Training home">
+        <span class="logo-text">ESCALANTE</span>
+        <span class="logo-subtitle">DOG TRAINING</span>
+      </a>
 
-      </div>
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="main-nav"
+        type="button"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-      <p class="service-cta">
-        <a class="btn" href="services.html">View All Services &amp; Pricing</a>
-      </p>
-
-      <p class="service-eligibility">
-        New clients must complete the free evaluation before booking other services. Daycare and boarding are for existing training clients only.
-      </p>
+      <nav class="main-nav" id="main-nav">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services &amp; Pricing</a>
+        <a href="success-stories.html">Success Stories</a>
+        <a href="fit.html">Is My Dog a Good Fit?</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html" class="nav-cta">Get Started</a>
+      </nav>
 
     </div>
-  </section>
+  </header>
+
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-content">
+
+        <p class="eyebrow">WINCHESTER • TEMECULA VALLEY • SURROUNDING AREAS</p>
+
+        <h1>Build a Better Relationship With Your Dog.</h1>
+
+        <p class="hero-description">
+          Balanced, personalized dog training focused on clear communication,
+          reliable obedience, and better behavior in everyday life.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="contact.html" class="btn btn-primary">
+            Book a Free Evaluation
+          </a>
+
+          <a href="services.html" class="btn btn-secondary">
+            Explore Services
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- MEET THE TRAINER -->
+    <section class="section meet-trainer">
+      <div class="container two-column">
+
+        <div class="trainer-image">
+          <img
+            src="assets/images/nicole-and-sunshine.jpg"
+            alt="Nicole with Sunshine"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="trainer-content">
+          <p class="eyebrow">MEET YOUR TRAINER</p>
+
+          <h2>Training Built Around You and Your Dog</h2>
+
+          <p>
+            I'm Nicole, the trainer behind Escalante Dog Training. My goal is
+            to help owners better understand their dogs and build the skills
+            needed for a calmer, more enjoyable life together.
+          </p>
+
+          <p>
+            Every dog and household is different. I focus on clear
+            communication, consistency, and practical training that carries
+            over into your everyday routine.
+          </p>
+
+          <a href="about.html" class="btn btn-primary">
+            Get to Know Me
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SERVICES -->
+    <section class="section services-section" id="services">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">TRAINING &amp; CARE</p>
+          <h2>Services &amp; Pricing</h2>
+          <p>
+            Choose the option that best fits your dog's needs and your goals.
+          </p>
+        </div>
+
+        <div class="service-grid">
+
+          <!-- PRIVATE LESSONS -->
+          <article class="home-service">
+            <h3>Private Lessons</h3>
+
+            <p class="price">$100</p>
+
+            <p>
+              One-on-one training tailored to your dog, with personalized
+              guidance and practical skills you can continue working on at home.
+            </p>
+
+            <a href="services.html#private" class="btn btn-primary">
+              Learn More
+            </a>
+          </article>
+
+
+          <!-- BOARD & TRAIN -->
+          <article class="home-service">
+            <h3>Board &amp; Train</h3>
+
+            <p class="price">$1,000+</p>
+
+            <p>
+              An immersive training program designed to build obedience,
+              structure, and consistency while your dog stays with the trainer.
+            </p>
+
+            <a href="services.html#board-train" class="btn btn-primary">
+              Learn More
+            </a>
+          </article>
+
+
+          <!-- DAYCARE / BOARDING -->
+          <article class="home-service">
+            <h3>Daycare / Boarding</h3>
+
+            <p class="price">$40 / $50</p>
+
+            <p>
+              Daytime care for $40 per day or overnight boarding for $50 per
+              night, available exclusively to existing training clients.
+            </p>
+
+            <a href="services.html#care" class="btn btn-primary">
+              Learn More
+            </a>
+          </article>
+
+        </div>
+
+        <div class="services-footer">
+          <p>
+            New clients begin with a free 20-minute consultation and evaluation
+            before booking other services. Existing clients may book eligible
+            services directly.
+          </p>
+
+          <a href="services.html" class="btn btn-secondary">
+            View All Services &amp; Pricing
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SUCCESS STORIES -->
+    <section class="section success-section" id="success-stories">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">REAL DOGS, REAL PROGRESS</p>
+          <h2>Success Stories</h2>
+          <p>
+            Every dog has a different starting point. Consistent training can
+            help create lasting progress for dogs and their families.
+          </p>
+        </div>
+
+        <div class="success-story-card">
+
+          <div class="success-story-image">
+            <img
+              src="assets/images/callie-before.jpg"
+              alt="Callie before training"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="success-story-content">
+            <h3>Meet Callie</h3>
+
+            <p>
+              Every training journey is unique. Check back for Callie's story
+              and more details about her progress.
+            </p>
+
+            <p class="testimonial-placeholder">
+              Client testimonial coming soon.
+            </p>
+
+            <a href="success-stories.html" class="btn btn-primary">
+              Read Her Story
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- TRAINING PHILOSOPHY -->
+    <section class="section philosophy-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">THE ESCALANTE APPROACH</p>
+          <h2>Balanced Training. Clear Communication.</h2>
+        </div>
+
+        <div class="philosophy-content">
+
+          <p>
+            Every dog learns best when communication is clear and consistent.
+            My training combines rewards, structure, and fair corrections to
+            help dogs understand what is expected of them.
+          </p>
+
+          <p>
+            The goal is a calm, confident dog that listens not only during
+            training, but in everyday life with its family.
+          </p>
+
+          <ul class="clean">
+            <li>Balanced training methods</li>
+            <li>Reward-based learning</li>
+            <li>Clear communication</li>
+            <li>Prong collar instruction included</li>
+            <li>Owner education in every program</li>
+          </ul>
+
+          <a href="fit.html" class="btn btn-primary">
+            Is My Dog a Good Fit?
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- SERVICE AREA -->
+    <section class="section service-area-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">LOCAL DOG TRAINING</p>
+          <h2>Proudly Serving the Temecula Valley</h2>
+
+          <p>
+            Based in Winchester, California, Escalante Dog Training serves
+            Temecula Valley and nearby communities.
+          </p>
+
+          <p>
+            Not sure if your area is covered? Reach out and ask.
+          </p>
+
+          <a href="contact.html" class="btn btn-primary">
+            Contact Nicole
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- FINAL CALL TO ACTION -->
+    <section class="section cta-section">
+      <div class="container">
+
+        <h2>Ready to Get Started?</h2>
+
+        <p>
+          Let's discuss your dog's needs, your goals, and which training option
+          may be the best fit.
+        </p>
+
+        <a href="contact.html" class="btn btn-primary">
+          Schedule Your Free Evaluation
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+
+      <div class="footer-brand">
+        <a href="index.html" class="logo">
+          <span class="logo-text">ESCALANTE</span>
+          <span class="logo-subtitle">DOG TRAINING</span>
+        </a>
+
+        <p>
+          Balanced training. Clear communication.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Explore</h3>
+        <a href="about.html">About</a>
+        <a href="services.html">Services &amp; Pricing</a>
+        <a href="success-stories.html">Success Stories</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Get in Touch</h3>
+
+        <p>
+          Winchester, California<br>
+          Serving Temecula Valley and surrounding communities
+        </p>
+
+        <a href="mailto:escalantedogtraining@gmail.com">
+          escalantedogtraining@gmail.com
+        </a>
+
+        <a href="contact.html" class="footer-cta">
+          Contact / Booking
+        </a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>
+          &copy; <span id="current-year">2026</span> Escalante Dog Training.
+          All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="assets/js/script.js"></script>
+
+  <script>
+    const yearElement = document.getElementById("current-year");
+
+    if (yearElement) {
+      yearElement.textContent = new Date().getFullYear();
+    }
+  </script>
+
+</body>
+</html>
