@@ -5,45 +5,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Escalante Dog Training offers balanced, personalized dog training in Winchester, Temecula Valley, and surrounding communities.">
-  <meta name="theme-color" content="#292d32">
-
-  <title>Escalante Dog Training | Winchester & Temecula Valley</title>
-
+  <meta name="theme-color" content="#111820">
+  <title>Escalante Dog Training | Winchester &amp; Temecula Valley</title>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
   <!-- HEADER / NAVIGATION -->
-  <header class="site-header">
-    <div class="container nav-container">
+  <header class="topbar">
+    <div class="container nav">
 
-      <a href="index.html" class="logo" aria-label="Escalante Dog Training home">
-        <span class="logo-text">ESCALANTE</span>
-        <span class="logo-subtitle">DOG TRAINING</span>
+      <a href="index.html" class="brand" aria-label="Escalante Dog Training home">
+        <span>
+          ESCALANTE
+          <small>DOG TRAINING</small>
+        </span>
       </a>
 
       <button
-        class="menu-toggle"
-        id="menu-toggle"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-        aria-controls="main-nav"
+        class="menu"
+        id="menu"
         type="button"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="main-links"
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        Menu
       </button>
 
-      <nav class="main-nav" id="main-nav">
-        <a href="index.html" aria-current="page">Home</a>
+      <nav class="links" id="main-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="services.html">Services &amp; Pricing</a>
         <a href="success-stories.html">Success Stories</a>
         <a href="fit.html">Is My Dog a Good Fit?</a>
         <a href="faq.html">FAQ</a>
-        <a href="contact.html" class="nav-cta">Get Started</a>
+        <a href="contact.html" class="btn">Get Started</a>
       </nav>
 
     </div>
@@ -54,24 +52,47 @@
 
     <!-- HERO -->
     <section class="hero">
-      <div class="container hero-content">
+      <div class="container hero-grid">
 
-        <p class="eyebrow">WINCHESTER • TEMECULA VALLEY • SURROUNDING AREAS</p>
+        <div>
+          <p class="eyebrow">WINCHESTER • TEMECULA VALLEY • SURROUNDING AREAS</p>
 
-        <h1>Build a Better Relationship With Your Dog.</h1>
+          <h1>Build a Better Relationship With Your Dog.</h1>
 
-        <p class="hero-description">
-          Balanced, personalized dog training focused on clear communication,
-          reliable obedience, and better behavior in everyday life.
-        </p>
+          <p>
+            Balanced, personalized dog training focused on clear communication,
+            reliable obedience, and better behavior in everyday life.
+          </p>
 
-        <div class="hero-buttons">
-          <a href="contact.html" class="btn btn-primary">
-            Book a Free Evaluation
-          </a>
+          <div class="hero-actions">
+            <a href="contact.html" class="btn">
+              Book a Free Evaluation
+            </a>
 
-          <a href="services.html" class="btn btn-secondary">
-            Explore Services
+            <a href="services.html" class="btn ghost">
+              Explore Services
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <span class="tag">YOUR DOG. YOUR GOALS.</span>
+
+          <h2>Training That Fits Real Life</h2>
+
+          <p>
+            Build practical skills that help you and your dog feel more
+            confident together at home and out in the world.
+          </p>
+
+          <ul>
+            <li>Personalized training plans</li>
+            <li>Clear, consistent communication</li>
+            <li>Owner education and support</li>
+          </ul>
+
+          <a href="fit.html" class="btn">
+            Find Out If We're a Good Fit
           </a>
         </div>
 
@@ -80,18 +101,18 @@
 
 
     <!-- MEET THE TRAINER -->
-    <section class="section meet-trainer">
-      <div class="container two-column">
+    <section class="section">
+      <div class="container split">
 
-        <div class="trainer-image">
+        <div class="photo">
           <img
             src="assets/images/nicole-and-sunshine.jpg"
-            alt="Nicole with Sunshine"
+            alt="Nicole with her dog Sunshine"
             loading="lazy"
           >
         </div>
 
-        <div class="trainer-content">
+        <div class="home-about">
           <p class="eyebrow">MEET YOUR TRAINER</p>
 
           <h2>Training Built Around You and Your Dog</h2>
@@ -108,7 +129,7 @@
             over into your everyday routine.
           </p>
 
-          <a href="about.html" class="btn btn-primary">
+          <a href="about.html" class="btn">
             Get to Know Me
           </a>
         </div>
@@ -118,10 +139,10 @@
 
 
     <!-- SERVICES -->
-    <section class="section services-section" id="services">
+    <section class="section dark" id="services">
       <div class="container">
 
-        <div class="section-heading">
+        <div class="section-title">
           <p class="eyebrow">TRAINING &amp; CARE</p>
           <h2>Services &amp; Pricing</h2>
           <p>
@@ -129,10 +150,10 @@
           </p>
         </div>
 
-        <div class="service-grid">
+        <div class="grid grid-3">
 
           <!-- PRIVATE LESSONS -->
-          <article class="home-service">
+          <article class="card pad service-card">
             <h3>Private Lessons</h3>
 
             <p class="price">$100</p>
@@ -142,14 +163,13 @@
               guidance and practical skills you can continue working on at home.
             </p>
 
-            <a href="services.html#private" class="btn btn-primary">
+            <a href="services.html#private" class="btn">
               Learn More
             </a>
           </article>
 
-
           <!-- BOARD & TRAIN -->
-          <article class="home-service">
+          <article class="card pad service-card">
             <h3>Board &amp; Train</h3>
 
             <p class="price">$1,000+</p>
@@ -159,14 +179,13 @@
               structure, and consistency while your dog stays with the trainer.
             </p>
 
-            <a href="services.html#board-train" class="btn btn-primary">
+            <a href="services.html#board-train" class="btn">
               Learn More
             </a>
           </article>
 
-
           <!-- DAYCARE / BOARDING -->
-          <article class="home-service">
+          <article class="card pad service-card">
             <h3>Daycare / Boarding</h3>
 
             <p class="price">$40 / $50</p>
@@ -176,21 +195,24 @@
               night, available exclusively to existing training clients.
             </p>
 
-            <a href="services.html#care" class="btn btn-primary">
+            <a href="services.html#care" class="btn">
               Learn More
             </a>
           </article>
 
         </div>
 
-        <div class="services-footer">
-          <p>
-            New clients begin with a free 20-minute consultation and evaluation
-            before booking other services. Existing clients may book eligible
-            services directly.
-          </p>
+        <div class="cta-panel">
+          <div>
+            <h2>Explore All Services</h2>
+            <p>
+              New clients begin with a free 20-minute consultation and
+              evaluation before booking other services. Existing clients may
+              book eligible services directly.
+            </p>
+          </div>
 
-          <a href="services.html" class="btn btn-secondary">
+          <a href="services.html" class="btn">
             View All Services &amp; Pricing
           </a>
         </div>
@@ -200,10 +222,10 @@
 
 
     <!-- SUCCESS STORIES -->
-    <section class="section success-section" id="success-stories">
+    <section class="section" id="success-stories">
       <div class="container">
 
-        <div class="section-heading">
+        <div class="section-title">
           <p class="eyebrow">REAL DOGS, REAL PROGRESS</p>
           <h2>Success Stories</h2>
           <p>
@@ -212,9 +234,9 @@
           </p>
         </div>
 
-        <div class="success-story-card">
+        <article class="card story-card">
 
-          <div class="success-story-image">
+          <div class="story-image">
             <img
               src="assets/images/callie-before.jpg"
               alt="Callie before training"
@@ -222,39 +244,40 @@
             >
           </div>
 
-          <div class="success-story-content">
-            <h3>Meet Callie</h3>
+          <div class="story-content">
+            <p class="eyebrow">CLIENT SPOTLIGHT</p>
+            <h2>Meet Callie</h2>
 
             <p>
-              Every training journey is unique. Check back for Callie's story
-              and more details about her progress.
+              Every training journey is unique. Callie's full story and
+              progress will be shared here.
             </p>
 
-            <p class="testimonial-placeholder">
+            <blockquote>
               Client testimonial coming soon.
-            </p>
+            </blockquote>
 
-            <a href="success-stories.html" class="btn btn-primary">
-              Read Her Story
-            </a>
+            <p>
+              <a href="success-stories.html" class="btn">
+                Read Her Story
+              </a>
+            </p>
           </div>
 
-        </div>
+        </article>
 
       </div>
     </section>
 
 
     <!-- TRAINING PHILOSOPHY -->
-    <section class="section philosophy-section">
-      <div class="container">
+    <section class="section dark">
+      <div class="container split">
 
-        <div class="section-heading">
+        <div>
           <p class="eyebrow">THE ESCALANTE APPROACH</p>
-          <h2>Balanced Training. Clear Communication.</h2>
-        </div>
 
-        <div class="philosophy-content">
+          <h2>Balanced Training. Clear Communication.</h2>
 
           <p>
             Every dog learns best when communication is clear and consistent.
@@ -267,18 +290,21 @@
             training, but in everyday life with its family.
           </p>
 
-          <ul class="clean">
+          <a href="fit.html" class="btn">
+            Is My Dog a Good Fit?
+          </a>
+        </div>
+
+        <div class="hero-card">
+          <h3>My Training Approach</h3>
+
+          <ul>
             <li>Balanced training methods</li>
             <li>Reward-based learning</li>
             <li>Clear communication</li>
             <li>Prong collar instruction included</li>
             <li>Owner education in every program</li>
           </ul>
-
-          <a href="fit.html" class="btn btn-primary">
-            Is My Dog a Good Fit?
-          </a>
-
         </div>
 
       </div>
@@ -286,11 +312,12 @@
 
 
     <!-- SERVICE AREA -->
-    <section class="section service-area-section">
+    <section class="section">
       <div class="container">
 
-        <div class="section-heading">
+        <div class="service-area">
           <p class="eyebrow">LOCAL DOG TRAINING</p>
+
           <h2>Proudly Serving the Temecula Valley</h2>
 
           <p>
@@ -302,7 +329,7 @@
             Not sure if your area is covered? Reach out and ask.
           </p>
 
-          <a href="contact.html" class="btn btn-primary">
+          <a href="contact.html" class="btn">
             Contact Nicole
           </a>
         </div>
@@ -312,19 +339,22 @@
 
 
     <!-- FINAL CALL TO ACTION -->
-    <section class="section cta-section">
+    <section class="section">
       <div class="container">
 
-        <h2>Ready to Get Started?</h2>
+        <div class="cta-panel">
+          <div>
+            <h2>Ready to Get Started?</h2>
+            <p>
+              Let's discuss your dog's needs, your goals, and which training
+              option may be the best fit.
+            </p>
+          </div>
 
-        <p>
-          Let's discuss your dog's needs, your goals, and which training option
-          may be the best fit.
-        </p>
-
-        <a href="contact.html" class="btn btn-primary">
-          Schedule Your Free Evaluation
-        </a>
+          <a href="contact.html" class="btn">
+            Schedule Your Free Evaluation
+          </a>
+        </div>
 
       </div>
     </section>
@@ -333,54 +363,54 @@
 
 
   <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container footer-content">
+  <footer class="footer">
+    <div class="container footer-grid">
 
-      <div class="footer-brand">
-        <a href="index.html" class="logo">
-          <span class="logo-text">ESCALANTE</span>
-          <span class="logo-subtitle">DOG TRAINING</span>
+      <div>
+        <a href="index.html" class="brand">
+          <span>
+            ESCALANTE
+            <small>DOG TRAINING</small>
+          </span>
         </a>
 
-        <p>
-          Balanced training. Clear communication.
-        </p>
+        <p>Balanced training. Clear communication.</p>
       </div>
 
-      <div class="footer-links">
-        <h3>Explore</h3>
-        <a href="about.html">About</a>
-        <a href="services.html">Services &amp; Pricing</a>
-        <a href="success-stories.html">Success Stories</a>
-        <a href="faq.html">FAQ</a>
+      <div>
+        <h4>Explore</h4>
+        <p><a href="about.html">About</a></p>
+        <p><a href="services.html">Services &amp; Pricing</a></p>
+        <p><a href="success-stories.html">Success Stories</a></p>
+        <p><a href="fit.html">Is My Dog a Good Fit?</a></p>
       </div>
 
-      <div class="footer-contact">
-        <h3>Get in Touch</h3>
+      <div>
+        <h4>Information</h4>
+        <p><a href="faq.html">Frequently Asked Questions</a></p>
+        <p><a href="contact.html">Contact / Booking</a></p>
+      </div>
 
+      <div>
+        <h4>Get in Touch</h4>
         <p>
           Winchester, California<br>
           Serving Temecula Valley and surrounding communities
         </p>
-
-        <a href="mailto:escalantedogtraining@gmail.com">
-          escalantedogtraining@gmail.com
-        </a>
-
-        <a href="contact.html" class="footer-cta">
-          Contact / Booking
-        </a>
+        <p>
+          <a href="mailto:escalantedogtraining@gmail.com">
+            escalantedogtraining@gmail.com
+          </a>
+        </p>
       </div>
 
     </div>
 
-    <div class="footer-bottom">
-      <div class="container">
-        <p>
-          &copy; <span id="current-year">2026</span> Escalante Dog Training.
-          All rights reserved.
-        </p>
-      </div>
+    <div class="container">
+      <p>
+        &copy; <span id="current-year">2026</span> Escalante Dog Training.
+        All rights reserved.
+      </p>
     </div>
   </footer>
 
