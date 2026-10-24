@@ -1266,4 +1266,51 @@ textarea:focus-visible {
      color: #111111;
    }
 
+   
+   /* =========================================
+      HOMEPAGE FINISHING TOUCHES
+      ========================================= */
+   
+   /* Compact location label in the homepage hero */
+   .hero-location {
+     display: inline-block;
+     margin: 0 0 18px;
+     padding: 7px 12px;
+     background: rgba(8, 13, 18, 0.88);
+     border: 1px solid rgba(200, 255, 0, 0.3);
+     border-radius: 999px;
+     color: var(--neon);
+     font-size: 11px;
+     font-weight: 800;
+     letter-spacing: 0.08em;
+     line-height: 1.4;
+     text-transform: uppercase;
+     text-shadow: none;
+   }
+   
+   /* Keep the location label from inheriting the large hero paragraph style */
+   .hero .hero-location {
+     font-size: 11px;
+     color: var(--neon);
+     max-width: none;
+   }
+   
+   /* Main logo sizing */
+   .brand img {
+     width: 68px;
+     height: 68px;
+     object-fit: contain;
+     flex-shrink: 0;
+   }
+   
+   /* Smaller location label on phones */
+   @media (max-width: 520px) {
+     .hero .hero-location {
+       font-size: 9px;
+       letter-spacing: 0.04em;
+       padding: 6px 9px;
+     }
+   }
+
+
 }
