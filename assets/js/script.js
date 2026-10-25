@@ -1,4 +1,3 @@
-
 /* =========================================
    MOBILE NAVIGATION
 ========================================= */
@@ -104,6 +103,44 @@ function getAvailableTimes(date) {
 let selectedBookingDate = null;
 let selectedBookingTime = null;
 
+
+/*
+  Scroll to the Evaluation Request form after
+  a visitor selects an appointment time.
+*/
+function scrollToEvaluationRequest() {
+  const explicitSection = document.querySelector('#evaluation-request');
+  const bookingForm = document.querySelector('#bookingForm');
+
+  const evaluationHeading = Array.from(
+    document.querySelectorAll('h1, h2, h3, h4')
+  ).find(heading =>
+    heading.textContent.trim().toLowerCase().includes('evaluation request')
+  );
+
+  const target =
+    explicitSection ||
+    (evaluationHeading &&
+      (evaluationHeading.closest('section') || evaluationHeading)) ||
+    (bookingForm &&
+      (bookingForm.closest('section') || bookingForm));
+
+  if (!target) return;
+
+  window.setTimeout(() => {
+    const top =
+      target.getBoundingClientRect().top +
+      window.scrollY -
+      90;
+
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: 'smooth'
+    });
+  }, 150);
+}
+
+
 function buildCalendar() {
   const calendar = document.querySelector('#bookingCalendar');
   const timeSlots = document.querySelector('#timeSlots');
@@ -202,6 +239,7 @@ function buildCalendar() {
       year === today.getFullYear() && month <= today.getMonth();
   }
 
+
   function chooseDate(dateKey) {
     const [selectedYear, selectedMonth, selectedDay] =
       dateKey.split('-').map(Number);
@@ -236,7 +274,10 @@ function buildCalendar() {
       button.addEventListener('click', () => {
         // Recheck availability in case the page has been left open.
         if (!isBookableDate(date)) {
-          alert('That date is no longer available to request. Please choose another date.');
+          alert(
+            'That date is no longer available to request. Please choose another date.'
+          );
+
           clearAppointment();
           renderCalendar();
           return;
@@ -254,6 +295,9 @@ function buildCalendar() {
 
         preferredField.value =
           `${prettyDate(selectedBookingDate)} at ${selectedBookingTime}`;
+
+        // Automatically show the Evaluation Request form.
+        scrollToEvaluationRequest();
       });
 
       timeSlots.appendChild(button);
@@ -262,14 +306,17 @@ function buildCalendar() {
     renderCalendar();
   }
 
+
   function clearAppointment() {
     selectedBookingDate = null;
     selectedBookingTime = null;
 
     preferredField.value = '';
     timeSlots.innerHTML = '';
-    selectedDateLabel.textContent = 'Select an available date to see times';
+    selectedDateLabel.textContent =
+      'Select an available date to see times';
   }
+
 
   previousButton.addEventListener('click', () => {
     if (previousButton.disabled) return;
@@ -284,6 +331,7 @@ function buildCalendar() {
     renderCalendar();
   });
 
+
   nextButton.addEventListener('click', () => {
     month++;
 
@@ -294,6 +342,7 @@ function buildCalendar() {
 
     renderCalendar();
   });
+
 
   renderCalendar();
 }
@@ -316,6 +365,7 @@ const CARE_SERVICES = [
   'Daycare - Existing Clients Only',
   'Boarding - Existing Clients Only'
 ];
+
 
 function applyClientRules() {
   if (!clientStatus || !serviceRequested) return;
@@ -363,6 +413,7 @@ function applyClientRules() {
     }
   }
 }
+
 
 if (clientStatus) {
   clientStatus.addEventListener('change', applyClientRules);
@@ -436,7 +487,9 @@ if (bookingForm) {
       serviceRequested ? serviceRequested.value : '';
 
     if (!clientStatus || (!isNewClient && !isExistingClient)) {
-      alert('Please indicate whether you are a new or existing training client.');
+      alert(
+        'Please indicate whether you are a new or existing training client.'
+      );
       return;
     }
 
@@ -452,7 +505,9 @@ if (bookingForm) {
       CARE_SERVICES.includes(requestedService) &&
       !isExistingClient
     ) {
-      alert('Daycare and boarding are available only to existing training clients.');
+      alert(
+        'Daycare and boarding are available only to existing training clients.'
+      );
       return;
     }
 
