@@ -1,4 +1,4 @@
-
+```css
 /* =========================================
    ESCALANTE DOG TRAINING
    Main website stylesheet
@@ -27,6 +27,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 body {
@@ -83,6 +84,7 @@ a {
   width: 68px;
   height: 68px;
   object-fit: contain;
+  flex-shrink: 0;
   border-radius: 16px;
 }
 
@@ -212,6 +214,12 @@ a {
   align-items: center;
 }
 
+.hero-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .hero h1,
 .page-hero h1 {
   font-size: clamp(46px, 7vw, 92px);
@@ -227,9 +235,10 @@ a {
   max-width: 760px;
 }
 
+/* Large homepage logo */
 .hero-logo {
   display: block;
-  width: 480px !important;
+  width: min(100%, 340px);
   max-width: 100%;
   height: auto;
   margin: 0 0 24px;
@@ -237,12 +246,27 @@ a {
   filter: drop-shadow(0 20px 34px rgba(0, 0, 0, .45));
 }
 
-@media (max-width: 520px) {
-  .hero-logo {
-    width: 360px !important;
-    max-width: 95%;
-    margin-bottom: 18px;
-  }
+/* Homepage location label */
+.hero-location {
+  display: inline-block;
+  margin: 0 0 18px;
+  padding: 7px 12px;
+  background: rgba(8, 13, 18, .88);
+  border: 1px solid rgba(200, 255, 0, .3);
+  border-radius: 999px;
+  color: var(--neon);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-shadow: none;
+}
+
+.hero .hero-location {
+  font-size: 11px;
+  color: var(--neon);
+  max-width: none;
 }
 
 .hero-card {
@@ -405,11 +429,13 @@ a {
   color: #596873;
 }
 
+/* Service prices */
 .price {
   display: inline-flex;
   align-items: center;
   background: var(--slate2);
   color: var(--neon);
+  -webkit-text-fill-color: var(--neon);
   border: 2px solid var(--neon);
   border-radius: 999px;
   padding: 8px 14px;
@@ -417,12 +443,29 @@ a {
   line-height: 1.1;
   font-weight: 950;
   margin: 8px 0 14px;
+  opacity: 1;
+}
+
+.price span {
+  color: var(--neon);
+  -webkit-text-fill-color: var(--neon);
 }
 
 .section.dark .price {
   background: #080d12;
   color: var(--neon);
+  -webkit-text-fill-color: var(--neon);
   border-color: var(--neon);
+}
+
+.savings {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #c8ff00;
+  -webkit-text-fill-color: #c8ff00;
+  margin-left: 8px;
+  vertical-align: middle;
 }
 
 .tag {
@@ -459,6 +502,7 @@ a {
 
 .service-card .price {
   color: var(--neon);
+  -webkit-text-fill-color: var(--neon);
   background: var(--slate2);
   border-color: var(--neon);
 }
@@ -917,6 +961,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  scroll-margin-top: 110px;
 }
 
 #bookingForm h2 {
@@ -1126,7 +1171,7 @@ textarea:focus-visible {
   }
 
   .hero-logo {
-    width: 220px;
+    width: min(100%, 340px);
   }
 
   .hero-actions {
@@ -1191,7 +1236,14 @@ textarea:focus-visible {
   }
 
   .hero-logo {
-    width: 170px;
+    width: min(85%, 280px);
+    margin-bottom: 18px;
+  }
+
+  .hero .hero-location {
+    font-size: 9px;
+    letter-spacing: .04em;
+    padding: 6px 9px;
   }
 
   .float-book {
@@ -1232,7 +1284,7 @@ textarea:focus-visible {
   }
 
   .price {
-    font-size: 25px;
+    font-size: 22px;
   }
 
   .service-group {
@@ -1257,127 +1309,71 @@ textarea:focus-visible {
   .cta-panel .btn {
     width: 100%;
   }
-
-   
-   /* Improve readability of service descriptions */
-   .home-service > p:not(.price),
-   .service-card > p,
-   .service-card ul.clean,
-   .service-card ul.clean li {
-     color: #111111 !important;
-   }
-   
-   /* Keep service descriptions dark on light cards */
-   .home-service,
-   .service-card {
-     color: #111111;
-   }
-   
-   .home-service h3,
-   .service-card h3 {
-     color: #111111;
-   }
-
-   
-   /* =========================================
-      HOMEPAGE FINISHING TOUCHES
-      ========================================= */
-   
-   /* Compact location label in the homepage hero */
-   .hero-location {
-     display: inline-block;
-     margin: 0 0 18px;
-     padding: 7px 12px;
-     background: rgba(8, 13, 18, 0.88);
-     border: 1px solid rgba(200, 255, 0, 0.3);
-     border-radius: 999px;
-     color: var(--neon);
-     font-size: 11px;
-     font-weight: 800;
-     letter-spacing: 0.08em;
-     line-height: 1.4;
-     text-transform: uppercase;
-     text-shadow: none;
-   }
-   
-   /* Keep the location label from inheriting the large hero paragraph style */
-   .hero .hero-location {
-     font-size: 11px;
-     color: var(--neon);
-     max-width: none;
-   }
-   
-   /* Main logo sizing */
-   .brand img {
-     width: 68px;
-     height: 68px;
-     object-fit: contain;
-     flex-shrink: 0;
-   }
-   
-   /* Smaller location label on phones */
-   @media (max-width: 520px) {
-     .hero .hero-location {
-       font-size: 9px;
-       letter-spacing: 0.04em;
-       padding: 6px 9px;
-     }
-   }
-
-         /* Large logo in the homepage hero */
-      .hero-main {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      
-      .hero-logo {
-        display: block;
-        width: min(100%, 340px);
-        height: auto;
-        object-fit: contain;
-        margin: 0 0 24px;
-      }
-      
-      /* Keep the large logo and headline balanced on mobile */
-      @media (max-width: 520px) {
-        .hero-logo {
-          width: min(85%, 280px);
-          margin-bottom: 18px;
-        }
-      }
-
-         .savings {
-        display: inline-block;
-        font-size: 13px;
-        font-weight: 700;
-        color: #6b8f00;
-        margin-left: 8px;
-        vertical-align: middle;
-      }
-
-         /* Fix service prices appearing black on dark backgrounds */
-      .price {
-        color: var(--neon) !important;
-        font-weight: 800 !important;
-      }
-      
-      .price span {
-        color: var(--neon) !important;
-      }
-      
-      /* Ensure prices remain visible on mobile */
-      @media (max-width: 520px) {
-        .price {
-          color: var(--neon) !important;
-          font-size: 22px !important;
-          font-weight: 800 !important;
-        }
-      
-        .price span {
-          color: var(--neon) !important;
-        }
-      }
-
-
 }
+
+/* =========================================
+   GLOBAL SERVICE READABILITY FIXES
+   These rules apply on desktop and mobile.
+   ========================================= */
+
+.home-service > p:not(.price),
+.service-card > p:not(.price),
+.service-card ul.clean,
+.service-card ul.clean li {
+  color: #111111 !important;
+}
+
+.home-service,
+.service-card {
+  color: #111111;
+}
+
+.home-service h3,
+.service-card h3 {
+  color: #111820;
+}
+
+/* Force all price text to remain neon green */
+.price,
+p.price,
+.card .price,
+.service-card .price,
+.home-service .price,
+.price span,
+p.price span {
+  color: #c8ff00 !important;
+  -webkit-text-fill-color: #c8ff00 !important;
+  opacity: 1 !important;
+  font-weight: 900 !important;
+}
+
+/* Keep the price badge dark with a neon border */
+.price,
+p.price,
+.card .price,
+.service-card .price,
+.home-service .price {
+  background-color: #111820 !important;
+  border: 2px solid #c8ff00 !important;
+}
+
+/* Ensure price badges remain visible on mobile */
+@media screen and (max-width: 520px) {
+  .price,
+  p.price,
+  .card .price,
+  .service-card .price,
+  .home-service .price {
+    color: #c8ff00 !important;
+    -webkit-text-fill-color: #c8ff00 !important;
+    font-size: 22px !important;
+    font-weight: 900 !important;
+  }
+
+  .price span,
+  p.price span {
+    color: #c8ff00 !important;
+    -webkit-text-fill-color: #c8ff00 !important;
+  }
+}
+```
