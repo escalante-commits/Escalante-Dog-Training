@@ -228,9 +228,19 @@ a {
 }
 
 .hero-logo {
-  width: min(300px, 60vw);
-  margin: 0 0 26px;
+  display: block;
+  width: min(100%, 480px);
+  height: auto;
+  object-fit: contain;
+  margin: 0 0 24px;
   filter: drop-shadow(0 20px 34px rgba(0, 0, 0, .45));
+}
+
+@media (max-width: 520px) {
+  .hero-logo {
+    width: min(95%, 360px);
+    margin-bottom: 18px;
+  }
 }
 
 .hero-card {
