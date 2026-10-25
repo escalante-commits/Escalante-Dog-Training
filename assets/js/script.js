@@ -39,8 +39,8 @@ function startOfToday() {
 }
 
 /*
-  Block the current week and require at least seven
-  days' notice. The current week is Sunday–Saturday.
+  Require at least seven days' notice and block
+  the current week. The current week is Sunday–Saturday.
 */
 function earliestBookingDate() {
   const today = startOfToday();
@@ -96,18 +96,9 @@ function getAvailableTimes(date) {
 
 
 /* =========================================
-   BOOKING CALENDAR
+   SCROLL TO EVALUATION REQUEST
 ========================================= */
 
-// Keep the selected appointment accessible to form validation.
-let selectedBookingDate = null;
-let selectedBookingTime = null;
-
-
-/*
-  Scroll to the Evaluation Request form after
-  a visitor selects an appointment time.
-*/
 function scrollToEvaluationRequest() {
   const explicitSection = document.querySelector('#evaluation-request');
   const bookingForm = document.querySelector('#bookingForm');
@@ -118,28 +109,40 @@ function scrollToEvaluationRequest() {
     heading.textContent.trim().toLowerCase().includes('evaluation request')
   );
 
+  // Prefer the actual evaluation section or heading.
   const target =
     explicitSection ||
-    (evaluationHeading &&
-      (evaluationHeading.closest('section') || evaluationHeading)) ||
-    (bookingForm &&
-      (bookingForm.closest('section') || bookingForm));
+    evaluationHeading ||
+    bookingForm;
 
-  if (!target) return;
+  if (!target) {
+    console.warn('Evaluation Request section could not be found.');
+    return;
+  }
 
+  // Wait for the mobile browser to finish updating the layout.
   window.setTimeout(() => {
-    const top =
-      target.getBoundingClientRect().top +
-      window.scrollY -
-      90;
+    requestAnimationFrame(() => {
+      const top =
+        target.getBoundingClientRect().top +
+        window.scrollY -
+        90;
 
-    window.scrollTo({
-      top: Math.max(0, top),
-      behavior: 'smooth'
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: 'smooth'
+      });
     });
-  }, 150);
+  }, 350);
 }
 
+
+/* =========================================
+   BOOKING CALENDAR
+========================================= */
+
+let selectedBookingDate = null;
+let selectedBookingTime = null;
 
 function buildCalendar() {
   const calendar = document.querySelector('#bookingCalendar');
@@ -150,7 +153,7 @@ function buildCalendar() {
   const previousButton = document.querySelector('#prevMonth');
   const nextButton = document.querySelector('#nextMonth');
 
-  // This script is also loaded on pages without a calendar.
+  // This script also runs on pages without a calendar.
   if (
     !calendar ||
     !timeSlots ||
@@ -234,7 +237,7 @@ function buildCalendar() {
       calendar.appendChild(button);
     }
 
-    // Do not allow navigation to a month before the current month.
+    // Prevent navigation to a month before the current month.
     previousButton.disabled =
       year === today.getFullYear() && month <= today.getMonth();
   }
@@ -250,7 +253,7 @@ function buildCalendar() {
       selectedDay
     );
 
-    // Recheck the date when it is selected.
+    // Recheck the date when selected.
     if (!isBookableDate(date)) {
       clearAppointment();
       renderCalendar();
@@ -266,13 +269,14 @@ function buildCalendar() {
 
     getAvailableTimes(date).forEach(time => {
       const button = document.createElement('button');
+
       button.type = 'button';
       button.className = 'slot';
       button.textContent = time;
       button.setAttribute('aria-pressed', 'false');
 
       button.addEventListener('click', () => {
-        // Recheck availability in case the page has been left open.
+        // Recheck the date in case the page has been left open.
         if (!isBookableDate(date)) {
           alert(
             'That date is no longer available to request. Please choose another date.'
@@ -296,7 +300,7 @@ function buildCalendar() {
         preferredField.value =
           `${prettyDate(selectedBookingDate)} at ${selectedBookingTime}`;
 
-        // Automatically show the Evaluation Request form.
+        // Scroll to the Evaluation Request section on desktop and mobile.
         scrollToEvaluationRequest();
       });
 
@@ -313,6 +317,7 @@ function buildCalendar() {
 
     preferredField.value = '';
     timeSlots.innerHTML = '';
+
     selectedDateLabel.textContent =
       'Select an available date to see times';
   }
@@ -395,14 +400,9 @@ function applyClientRules() {
         'New clients must start with the free 20-minute consultation/evaluation. Other services can be discussed during that appointment.';
     }
   } else if (isExistingClient) {
-    if (
-      CARE_SERVICES.includes(serviceRequested.value) ||
-      serviceRequested.value
-    ) {
-      if (serviceRule) {
-        serviceRule.textContent =
-          'Existing training clients may request eligible services directly. Daycare and boarding are care services, not training sessions.';
-      }
+    if (serviceRule) {
+      serviceRule.textContent =
+        'Existing training clients may request eligible services directly. Daycare and boarding are care services, not training sessions.';
     }
   } else {
     serviceRequested.value = EVALUATION_SERVICE;
@@ -487,9 +487,7 @@ if (bookingForm) {
       serviceRequested ? serviceRequested.value : '';
 
     if (!clientStatus || (!isNewClient && !isExistingClient)) {
-      alert(
-        'Please indicate whether you are a new or existing training client.'
-      );
+      alert('Please indicate whether you are a new or existing training client.');
       return;
     }
 
@@ -505,9 +503,7 @@ if (bookingForm) {
       CARE_SERVICES.includes(requestedService) &&
       !isExistingClient
     ) {
-      alert(
-        'Daycare and boarding are available only to existing training clients.'
-      );
+      alert('Daycare and boarding are available only to existing training clients.');
       return;
     }
 
