@@ -229,16 +229,18 @@ a {
 
 .hero-logo {
   display: block;
-  width: min(100%, 480px);
+  width: 480px !important;
+  max-width: 100%;
   height: auto;
-  object-fit: contain;
   margin: 0 0 24px;
+  object-fit: contain;
   filter: drop-shadow(0 20px 34px rgba(0, 0, 0, .45));
 }
 
 @media (max-width: 520px) {
   .hero-logo {
-    width: min(95%, 360px);
+    width: 360px !important;
+    max-width: 95%;
     margin-bottom: 18px;
   }
 }
