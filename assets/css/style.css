@@ -1356,5 +1356,28 @@ textarea:focus-visible {
         vertical-align: middle;
       }
 
+         /* Fix service prices appearing black on dark backgrounds */
+      .price {
+        color: var(--neon) !important;
+        font-weight: 800 !important;
+      }
+      
+      .price span {
+        color: var(--neon) !important;
+      }
+      
+      /* Ensure prices remain visible on mobile */
+      @media (max-width: 520px) {
+        .price {
+          color: var(--neon) !important;
+          font-size: 22px !important;
+          font-weight: 800 !important;
+        }
+      
+        .price span {
+          color: var(--neon) !important;
+        }
+      }
+
 
 }
